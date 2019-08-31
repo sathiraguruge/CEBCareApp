@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -16,6 +18,7 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
 
     TextInputLayout nameInput, emailInput, amountInput;
     TextInputEditText name, email, amount;
+    Button proceedBtn;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -36,6 +39,8 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
         name = findViewById(R.id.nameEditText);
         email = findViewById(R.id.emailEditText);
         amount = findViewById(R.id.amountEditText);
+
+        proceedBtn = findViewById(R.id.proceedToPaymentBtn);
 
 
         name.setOnTouchListener(new View.OnTouchListener() {
@@ -109,7 +114,20 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View v) {
+        if (v.getId() == R.id.proceedToPaymentBtn) {
+            Intent intent = new Intent(getApplicationContext(), PaymentDetails.class);
+            Bundle bundle = new Bundle();
+            String name = nameInput.getEditText().getText().toString();
+            String email = emailInput.getEditText().getText().toString();
+            String amount = amountInput.getEditText().getText().toString();
+
+            bundle.putString("name", name);
+            bundle.putString("email", email);
+            bundle.putString("amount", amount);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
 
     }
 }
