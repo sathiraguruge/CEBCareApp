@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CEBCareApp</string>
+
+    <string-array name="account_numbers">
+        <item>Select Account Number</item>
+        <item>000322</item>
+        <item>024243</item>
+    </string-array>
 </resources>

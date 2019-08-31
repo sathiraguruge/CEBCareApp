@@ -6,11 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Profile">
 
+    <include
+        android:id="@+id/profileToolbar"
+        layout="@layout/toolbar" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center"
         android:elevation="6dp"
+        android:gravity="center"
         android:text="Profile"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"

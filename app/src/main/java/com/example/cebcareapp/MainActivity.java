@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (v.getId() == R.id.payment) {
 
+            Intent intent = new Intent(MainActivity.this, BillPayment.class);
+            startActivity(intent);
+
         } else if (v.getId() == R.id.profile) {
 
             Intent intent = new Intent(MainActivity.this, Profile.class);
