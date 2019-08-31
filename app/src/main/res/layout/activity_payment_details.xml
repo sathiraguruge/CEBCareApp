@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Profile">
+    tools:context=".PaymentDetails">
+
 
     <include
-        android:id="@+id/profileToolbar"
+        android:id="@+id/billPaymentToolbar"
         layout="@layout/toolbar" />
-
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -22,6 +22,9 @@
             android:scaleType="fitXY"
             android:src="@drawable/bg_activity"
             android:translationY="-50sp" />
+
+
+
     </FrameLayout>
 
 </LinearLayout>
