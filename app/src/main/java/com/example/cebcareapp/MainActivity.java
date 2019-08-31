@@ -71,7 +71,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (v.getId() == R.id.calculator) {
 
+        } else if (v.getId() == R.id.asses) {
+            Intent intent = new Intent(MainActivity.this, AccessByCensus.class);
+            startActivity(intent);
         }
+
 
     }
 }
