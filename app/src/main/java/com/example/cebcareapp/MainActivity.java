@@ -12,8 +12,10 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ImageView appBg, clover;
-    Animation bgAnim, cloverAnim, fromButtom, menuAnim;
+    Animation bgAnim, cloverAnim, fromButton, menuAnim;
     LinearLayout appNameSplash, homeTitle, menu;
+
+    int numOfSessions, count ; // This is just for GIT demo purpose, delete later
 
     //Menu Icons
     LinearLayout complains, calender, payment, profile, calculator, assess;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fromButtom = AnimationUtils.loadAnimation(this, R.anim.frombuttomanim);
+        fromButton = AnimationUtils.loadAnimation(this, R.anim.frombuttomanim);
         menuAnim = AnimationUtils.loadAnimation(this, R.anim.bottomupmenuanim);
 
         //Getting the references of the buttons
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         clover.animate().alpha(0).setDuration(800).setStartDelay(600);
         appNameSplash.animate().translationY(140).alpha(0).setStartDelay(500);
 
-        homeTitle.startAnimation(fromButtom);
+        homeTitle.startAnimation(fromButton);
         menu.startAnimation(menuAnim);
 
 
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.calculator) {
 
         } else if (v.getId() == R.id.asses) {
-            Intent intent = new Intent(MainActivity.this, AccessByCensus.class);
+            Intent intent = new Intent(MainActivity.this, AssesByCensus.class);
             startActivity(intent);
         }
 

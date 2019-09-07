@@ -5,7 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 
-public class AccessByCensus extends AppCompatActivity {
+public class AssesByCensus extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
