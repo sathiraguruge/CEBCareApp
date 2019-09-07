@@ -18,7 +18,7 @@
             android:layout_marginTop="156dp"
             android:contentDescription="@string/ceblogo"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/CEB_Original_Logo"
+            app:srcCompat="@drawable/ceb_original_logo"
             tools:layout_editor_absoluteX="0dp" />
 
         <EditText
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="90dp"
             android:autofillHints=""
-            android:background="@drawable/Login_UI_Text_Field"
+            android:background="@drawable/login_ui_text_field"
             android:ems="10"
             android:inputType="textPersonName"
             android:scaleX="0.6"
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:background="@drawable/Login_UI_Text_Field"
+            android:background="@drawable/login_ui_text_field"
             android:ems="10"
             android:inputType="textPersonName"
             android:scaleX="0.6"
@@ -75,14 +75,14 @@
                 android:layout_weight="1"
                 android:scaleX="1"
                 android:scaleY="1"
-                app:srcCompat="@drawable/Login_UI_Password" />
+                app:srcCompat="@drawable/login_ui_password" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/Login_UI_Divider" />
+                app:srcCompat="@drawable/login_ui_divider" />
 
             <ImageButton
                 android:id="@+id/register_user_button"
@@ -91,7 +91,7 @@
                 android:layout_weight="1"
                 android:scaleX="1"
                 android:scaleY="1"
-                app:srcCompat="@drawable/Login_UI_Register" />
+                app:srcCompat="@drawable/login_ui_register" />
         </LinearLayout>
 
         <ImageButton
@@ -103,7 +103,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/Login_UI_Login_Button"
+            app:srcCompat="@drawable/login_ui_login_button"
             tools:layout_editor_absoluteY="481dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

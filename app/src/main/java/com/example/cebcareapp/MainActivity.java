@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ImageView appBg, clover;
@@ -58,11 +59,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.complains) {
-
+            Intent intent = new Intent(MainActivity.this, ComplaintActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.eventCalender) {
 
         } else if (v.getId() == R.id.payment) {
-
             Intent intent = new Intent(MainActivity.this, BillPayment.class);
             startActivity(intent);
 
