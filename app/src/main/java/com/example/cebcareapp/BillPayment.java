@@ -118,7 +118,7 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
         emailInput = findViewById(R.id.emailTextInputLayout);
         amountInput = findViewById(R.id.amountInputLayout);
 
-        if (!nameInput.getEditText().getText().equals("")) {
+        if (!nameInput.getEditText().getText().toString().isEmpty()) {
             nameInput.setErrorEnabled(false);
             if (!emailInput.getEditText().getText().equals("")) {
                 emailInput.setErrorEnabled(false);
@@ -146,11 +146,13 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
             String email = emailInput.getEditText().getText().toString();
             String amount = amountInput.getEditText().getText().toString();
 
-            bundle.putString("name", name);
-            bundle.putString("email", email);
-            bundle.putString("amount", amount);
-            intent.putExtras(bundle);
-            startActivity(intent);
+            if (isValid()) {
+                bundle.putString("name", name);
+                bundle.putString("email", email);
+                bundle.putString("amount", amount);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
         }
 
     }
