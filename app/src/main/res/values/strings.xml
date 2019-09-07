@@ -1,9 +1,19 @@
 <resources>
     <string name="app_name">CEBCareApp</string>
+    <string name="ceblogo">CEBLogo</string>
 
     <string-array name="account_numbers">
         <item>Select Account Number</item>
         <item>000322</item>
         <item>024243</item>
+    </string-array>
+
+    <string-array name="complaint_types">
+        <item>Select Complaint type</item>
+        <item>Supply Failure</item>
+        <item>Equipment Repair</item>
+        <item>Voltage Issues</item>
+        <item>Property Damage</item>
+        <item>Natural Hazard</item>
     </string-array>
 </resources>
