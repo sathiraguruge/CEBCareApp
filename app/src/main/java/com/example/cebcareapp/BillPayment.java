@@ -113,6 +113,30 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
         });
     }
 
+    private Boolean isValid() {
+        nameInput = findViewById(R.id.nameTextInputLayout);
+        emailInput = findViewById(R.id.emailTextInputLayout);
+        amountInput = findViewById(R.id.amountInputLayout);
+
+        if (!nameInput.getEditText().getText().equals("")) {
+            nameInput.setErrorEnabled(false);
+            if (!emailInput.getEditText().getText().equals("")) {
+                emailInput.setErrorEnabled(false);
+                if (!amountInput.getEditText().getText().equals("")) {
+                    amountInput.setErrorEnabled(false);
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            nameInput.setBoxBackgroundColorResource(R.color.redColour);
+            nameInput.setError("Name Cannot be Empty !");
+            return false;
+        }
+        return false;
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.proceedToPaymentBtn) {
