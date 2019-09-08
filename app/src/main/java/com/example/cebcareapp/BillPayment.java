@@ -6,13 +6,19 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BillPayment extends AppCompatActivity implements View.OnClickListener {
 
@@ -118,24 +124,61 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
         emailInput = findViewById(R.id.emailTextInputLayout);
         amountInput = findViewById(R.id.amountInputLayout);
 
-        if (!nameInput.getEditText().getText().toString().isEmpty()) {
+//        if (!nameInput.getEditText().getText().toString().isEmpty()) {
+//            nameInput.setErrorEnabled(false);
+//            if (!emailInput.getEditText().getText().equals("")) {
+//                emailInput.setErrorEnabled(false);
+//                if (!amountInput.getEditText().getText().equals("")) {
+//                    amountInput.setErrorEnabled(false);
+//                    return true;
+//                }
+//            } else {
+//                return false;
+//            }
+//        } else {
+//            nameInput.setBoxBackgroundColorResource(R.color.redColour);
+//            nameInput.setError("Name Cannot be Empty !");
+//            return false;
+//        }
+//        return false;
+
+        if (isNameValid(nameInput.getEditText())) {
             nameInput.setErrorEnabled(false);
-            if (!emailInput.getEditText().getText().equals("")) {
+            if (isEmailValid(emailInput.getEditText())) {
                 emailInput.setErrorEnabled(false);
-                if (!amountInput.getEditText().getText().equals("")) {
+                if (isAmountValid(amountInput.getEditText())) {
                     amountInput.setErrorEnabled(false);
                     return true;
+                } else {
+                    amountInput.setError("Please enter a valid Email");
+                    return false;
                 }
             } else {
+                emailInput.setError("Please enter a valid Email !");
                 return false;
             }
         } else {
             nameInput.setBoxBackgroundColorResource(R.color.redColour);
-            nameInput.setError("Name Cannot be Empty !");
+            nameInput.setError("Please enter a valid name !");
             return false;
         }
-        return false;
     }
+
+    public Boolean isNameValid(EditText text) {
+        Pattern ps = Pattern.compile("^[a-zA-Z ]+$");
+        Matcher ms = ps.matcher(text.getText().toString());
+        return ms.matches() && (!TextUtils.isEmpty(text.getText().toString()));
+    }
+
+
+    public Boolean isEmailValid(EditText text) {
+        return (!TextUtils.isEmpty(text.getText().toString()) && Patterns.EMAIL_ADDRESS.matcher(text.getText().toString()).matches());
+    }
+
+    public Boolean isAmountValid(EditText text) {
+        return !TextUtils.isEmpty(text.getText().toString());
+    }
+
 
     @Override
     public void onClick(View v) {

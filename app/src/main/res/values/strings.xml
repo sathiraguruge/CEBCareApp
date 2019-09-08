@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">CEBCareApp</string>
     <string name="ceblogo">CEBLogo</string>
+    <string name="select_account_number">Select Account Number</string>
 
     <string-array name="account_numbers">
         <item>Select Account Number</item>

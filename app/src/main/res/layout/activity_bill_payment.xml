@@ -28,6 +28,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
+
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -35,13 +36,14 @@
                 android:id="@+id/accountNumberTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Select Account Number"
+                android:hint="@string/select_account_number"
                 app:errorEnabled="true"
                 app:hintEnabled="true">
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30sp"
                     android:layout_marginBottom="20dp"
                     android:entries="@array/account_numbers" />
             </com.google.android.material.textfield.TextInputLayout>
