@@ -2,14 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".BillPayment">
-
-    <include
-        android:id="@+id/billPaymentToolbar"
-        layout="@layout/toolbar" />
+    android:orientation="horizontal"
+    tools:context=".ui.main.PlaceholderFragment">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -23,7 +20,7 @@
             android:translationY="-50sp" />
 
         <LinearLayout
-            android:id="@+id/billPaymentLinerLayout"
+            android:id="@+id/billPaymentLinerLayoutTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -33,7 +30,7 @@
             android:padding="16dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/accountNumberTextInputLayout"
+                android:id="@+id/accountNumberTextInputLayoutTab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/select_account_number"
@@ -49,7 +46,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nameTextInputLayout"
+                android:id="@+id/nameTextInputLayoutTab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
@@ -57,7 +54,7 @@
                 app:hintAnimationEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nameEditText"
+                    android:id="@+id/nameEditTextTab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/bg_layouts"
@@ -67,7 +64,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailTextInputLayout"
+                android:id="@+id/emailTextInputLayoutTab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -75,7 +72,7 @@
                 app:hintAnimationEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailEditText"
+                    android:id="@+id/emailEditTextTab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/bg_layouts"
@@ -85,7 +82,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/amountInputLayout"
+                android:id="@+id/amountInputLayoutTab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Amount"
@@ -93,7 +90,7 @@
                 app:hintAnimationEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/amountEditText"
+                    android:id="@+id/amountEditTextTab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/bg_layouts"
@@ -103,7 +100,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/proceedToPaymentBtn"
+                android:id="@+id/proceedToPaymentBtnTab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -116,4 +113,5 @@
 
         </LinearLayout>
     </FrameLayout>
+
 </LinearLayout>

@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ComplaintHistoryActivity"></activity>
+        <activity
+            android:name=".BillPaymentWithHistory"
+            android:label="@string/title_activity_bill_payment_with_history"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ComplaintHistoryActivity" />
         <activity android:name=".ComplaintActivity" />
         <activity android:name=".AssesByCensus" />
         <activity android:name=".PaymentDetails" />
