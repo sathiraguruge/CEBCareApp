@@ -17,4 +17,7 @@
         <item>Property Damage</item>
         <item>Natural Hazard</item>
     </string-array>
+    <string name="title_activity_bill_payment_with_history">BillPaymentWithHistory</string>
+    <string name="tab_text_1">Bill Payment</string>
+    <string name="tab_text_2">Payment History</string>
 </resources>
