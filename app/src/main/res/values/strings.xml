@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">CEBCareApp</string>
     <string name="ceblogo">CEBLogo</string>
+    <string name="select_account_number">Select Account Number</string>
 
     <string-array name="account_numbers">
         <item>Select Account Number</item>
@@ -16,4 +17,7 @@
         <item>Property Damage</item>
         <item>Natural Hazard</item>
     </string-array>
+    <string name="title_activity_bill_payment_with_history">BillPaymentWithHistory</string>
+    <string name="tab_text_1">Bill Payment</string>
+    <string name="tab_text_2">Payment History</string>
 </resources>

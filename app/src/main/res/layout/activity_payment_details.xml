@@ -23,8 +23,46 @@
             android:src="@drawable/bg_activity"
             android:translationY="-50sp" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="260sp">
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/payment_detail"
+                app:layout_constraintTop_toTopOf="parent" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="550sp">
+
+            <Button
+                android:id="@+id/proceedToPaymentBtn"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/toolbarColour"
+                android:backgroundTintMode="src_in"
+                android:elevation="6dp"
+                android:text="Pay"
+                android:textColor="#fff" />
+            <Button
+                android:id="@+id/cancelPaymentBtn"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/toolbarColour"
+                android:backgroundTintMode="src_in"
+                android:elevation="6dp"
+                android:text="Cancel"
+                android:textColor="#fff" />
+        </LinearLayout>
     </FrameLayout>
 
 </LinearLayout>
