@@ -10,7 +10,7 @@
     </string-array>
 
     <string-array name="complaint_types">
-        <item>Select Complaint type</item>
+        <item>Select Complaint Type</item>
         <item>Supply Failure</item>
         <item>Equipment Repair</item>
         <item>Voltage Issues</item>

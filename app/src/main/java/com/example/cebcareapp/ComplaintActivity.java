@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ public class ComplaintActivity extends AppCompatActivity {
     private TextInputEditText complaint, email, phone;
     private Button buttonComplaint;
     private TextView complaintHistory;
+    private Spinner accountNodropdown;
+    private Spinner complaintTypedrpdown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,10 @@ public class ComplaintActivity extends AppCompatActivity {
         phone = findViewById(R.id.amountEditText);
         complaintHistory = findViewById(R.id.complaintHistoryBtn);
         buttonComplaint = findViewById(R.id.proceedToPaymentBtn);
+        buttonComplaint = findViewById(R.id.proceedToPaymentBtn);
+        complaintTypedrpdown = findViewById(R.id.complaintTypedrpdown);
+        accountNodropdown = findViewById(R.id.accountNodropdown);
+
         this.startListener();
 
         complaint.setOnTouchListener(new View.OnTouchListener() {
@@ -109,7 +116,9 @@ public class ComplaintActivity extends AppCompatActivity {
         this.buttonComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertData(view);
+                if(validate() != -1) {
+                    insertData();
+                }
             }
         });
         this.complaintHistory.setOnClickListener(new View.OnClickListener() {
@@ -122,20 +131,49 @@ public class ComplaintActivity extends AppCompatActivity {
 
     }
 
-    public void insertData(View view) {
+    public void insertData() {
         ComplaintDB complaintDB = new ComplaintDB(getBaseContext());
         Complaint complaint = new Complaint();
-        complaint.setAccount("A001");
-        complaint.setComplaintType("Natural Disaster");
+        complaint.setAccount(accountNodropdown.getSelectedItem().toString());
+        complaint.setComplaintType(complaintTypedrpdown.getSelectedItem().toString());
         complaint.setComplaint(this.complaint.getText().toString());
         complaint.setEmail("sathira@gmail.com");
-complaint.setPhone(00);
+        complaint.setPhone(00);
 
         if (complaintDB.create(complaint)) {
             Toast.makeText(getBaseContext(), "Complaint Sent Successfully", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getBaseContext(), "Error", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    public int validate(){
+
+        if(accountNodropdown.getSelectedItem().toString().equals("Select Account Number")){
+            Toast.makeText(getBaseContext(), "Select Account Number!", Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+
+        if(complaintTypedrpdown.getSelectedItem().toString().equals("Select Complaint Type")){
+            Toast.makeText(getBaseContext(), "Select Complaint Type!", Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+
+        if(complaint.getText().toString().equals("")|| complaint.getText().toString() == null) {
+            Toast.makeText(getBaseContext(), "Complaint field cannot be empty!", Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+
+        if(email.getText().toString().equals("")|| email.getText().toString() == null) {
+            Toast.makeText(getBaseContext(), "Email field cannot be empty!", Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+
+        if(phone.getText().toString().equals("")|| phone.getText().toString() == null) {
+            Toast.makeText(getBaseContext(), "Phone field cannot be empty!", Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+
+        return 0;
     }
 }
