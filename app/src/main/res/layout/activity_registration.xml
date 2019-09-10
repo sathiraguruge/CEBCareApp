@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Profile">
+    tools:context=".Registration">
 
     <include
-        android:id="@+id/profileToolbar"
+        android:id="@+id/registrationToolbar"
         layout="@layout/toolbar" />
 
 
@@ -37,18 +37,14 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="6dp"
-                    android:src="@drawable/profile_pic" />
+
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nameTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
+                    android:hint="Full Name"
                     app:errorEnabled="true"
                     app:hintAnimationEnabled="true">
 
@@ -56,8 +52,6 @@
                         android:id="@+id/nameEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/edit_pencil_resized"
-                        android:drawableRight="@drawable/edit_pencil_resized"
                         android:inputType="text"
                         android:longClickable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -74,8 +68,6 @@
                         android:id="@+id/emailEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/edit_pencil_resized"
-                        android:drawableRight="@drawable/edit_pencil_resized"
                         android:inputType="textEmailAddress"
                         android:longClickable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -84,7 +76,7 @@
                     android:id="@+id/phoneInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mobile Number"
+                    android:hint="Mobile Phone"
                     app:errorEnabled="true"
                     app:hintAnimationEnabled="true">
 
@@ -92,8 +84,6 @@
                         android:id="@+id/phoneEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/edit_pencil_resized"
-                        android:drawableRight="@drawable/edit_pencil_resized"
                         android:inputType="phone"
                         android:longClickable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -102,7 +92,7 @@
                     android:id="@+id/landLineLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mobile Number"
+                    android:hint="Land Phone"
                     app:errorEnabled="true"
                     app:hintAnimationEnabled="true">
 
@@ -110,20 +100,59 @@
                         android:id="@+id/landLineEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/edit_pencil_resized"
-                        android:drawableRight="@drawable/edit_pencil_resized"
                         android:inputType="phone"
                         android:longClickable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/editEnable"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usernameLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    app:backgroundTint="#2196F3"
-                    app:srcCompat="@drawable/edit_pencil_resized" />
+                    android:hint="Username (Min 10 charactors)"
+                    app:errorEnabled="true"
+                    app:hintAnimationEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/usernameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:longClickable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    app:errorEnabled="true"
+                    app:hintAnimationEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:longClickable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/confirmpasswordLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirm Password"
+                    app:errorEnabled="true"
+                    app:hintAnimationEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/confirmpasswordEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:longClickable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 <Button
                     android:id="@+id/saveChanges"
@@ -133,7 +162,17 @@
                     android:backgroundTint="@color/toolbarColour"
                     android:backgroundTintMode="src_in"
                     android:elevation="6dp"
-                    android:text="Save Changes"
+                    android:text="Register"
+                    android:textColor="#fff" />
+                <Button
+                    android:id="@+id/back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/toolbarColour"
+                    android:backgroundTintMode="src_in"
+                    android:elevation="6dp"
+                    android:text="Back"
                     android:textColor="#fff" />
 
             </LinearLayout>
