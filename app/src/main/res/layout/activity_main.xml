@@ -110,6 +110,7 @@
                     android:layout_marginRight="50dp"
                     android:clickable="true"
                     android:gravity="center"
+                    android:onClick="onClick"
                     android:orientation="vertical">
 
                     <ImageView
@@ -222,6 +223,7 @@
                     android:layout_marginRight="50dp"
                     android:clickable="true"
                     android:gravity="center"
+                    android:onClick="onClick"
                     android:orientation="vertical">
 
                     <ImageView
@@ -245,6 +247,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:gravity="center"
+                    android:onClick="onClick"
                     android:orientation="vertical">
 
                     <ImageView

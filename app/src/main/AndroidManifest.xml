@@ -12,12 +12,31 @@
         <activity android:name=".Registration"></activity>
         <activity android:name=".PaymentDetails" />
         <activity
+            android:name=".BillPaymentWithHistory"
+            android:label="@string/title_activity_bill_payment_with_history"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ComplaintHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ComplaintActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AssesByCensus"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PaymentDetails"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".BillPayment"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Profile"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BillPayment">
+    tools:context=".ComplaintActivity">
 
     <include
         android:id="@+id/billPaymentToolbar"
@@ -13,7 +13,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="match_parent"
@@ -23,12 +23,44 @@
             android:translationY="-50sp" />
 
         <LinearLayout
-            android:id="@+id/billPaymentLinerLayout"
+            android:id="@+id/homeTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:elevation="6dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.129"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.044">
+
+            <TextView
+                android:id="@+id/complaintHistoryBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="250dp"
+                android:text="Complaint History"
+                android:textColor="#FFF"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Lodge a Complaint"
+                android:textColor="#FFF"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/billPaymentLinerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="665dp"
             android:layout_gravity="center"
             android:gravity="center"
-
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -36,23 +68,41 @@
                 android:id="@+id/accountNumberTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/select_account_number"
+                android:layout_marginTop="100dp"
+                android:hint="Select Account Number"
                 app:errorEnabled="true"
                 app:hintEnabled="true">
 
                 <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/accountNodropdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30sp"
                     android:layout_marginBottom="20dp"
                     android:entries="@array/account_numbers" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/complaintTypeTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select Account Number"
+                app:errorEnabled="true"
+                app:hintEnabled="true">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/complaintTypedrpdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:entries="@array/complaint_types" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nameTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="Complaint"
                 app:errorEnabled="true"
                 app:hintAnimationEnabled="true">
 
@@ -88,7 +138,7 @@
                 android:id="@+id/amountInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Amount"
+                android:hint="Phone"
                 app:errorEnabled="true"
                 app:hintAnimationEnabled="true">
 
@@ -98,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/bg_layouts"
                     android:drawableRight="@drawable/bg_layouts"
-                    android:inputType="number"
+                    android:inputType="phone"
                     android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,10 +160,10 @@
                 android:backgroundTint="@color/toolbarColour"
                 android:backgroundTintMode="src_in"
                 android:elevation="6dp"
-                android:onClick="onClick"
-                android:text="Proceed to Payment"
+                android:text="Complaint"
                 android:textColor="#fff" />
 
         </LinearLayout>
+
     </FrameLayout>
 </LinearLayout>
