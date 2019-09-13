@@ -37,7 +37,7 @@ public class ComplaintAdapter extends ArrayAdapter<Complaint> {
         System.out.println(complaints.get(position).getID());
 
         TextView textViewDateAdded = view.findViewById(R.id.textViewDateAdded);
-        textViewDateAdded.setText("Added On : " + complaints.get(position).getDateAdded());
+        textViewDateAdded.setText("Complained On : " + complaints.get(position).getDateAdded());
 
         TextView textViewComplaintType = view.findViewById(R.id.textViewComplaintType);
         textViewComplaintType.setText(complaints.get(position).getComplaintType());

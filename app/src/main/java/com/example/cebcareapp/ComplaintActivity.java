@@ -54,7 +54,7 @@ public class ComplaintActivity extends AppCompatActivity {
                     if (event.getRawX() >= (complaint.getRight() - complaint.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                         // your action here
                         Toast toast = Toast.makeText(getApplicationContext(),
-                                "Your ComplaintDB goes here.",
+                                "Your Complaint goes here.",
                                 Toast.LENGTH_SHORT);
                         toast.show();
                         return true;
@@ -142,6 +142,8 @@ public class ComplaintActivity extends AppCompatActivity {
 
         if (complaintDB.create(complaint)) {
             Toast.makeText(getBaseContext(), "Complaint Sent Successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ComplaintActivity.this, ComplaintHistoryActivity.class);
+            startActivity(intent);
         } else {
             Toast.makeText(getBaseContext(), "Error", Toast.LENGTH_SHORT).show();
         }
