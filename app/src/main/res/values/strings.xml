@@ -20,4 +20,10 @@
     <string name="title_activity_bill_payment_with_history">BillPaymentWithHistory</string>
     <string name="tab_text_1">Bill Payment</string>
     <string name="tab_text_2">Payment History</string>
+    <string name="dear_customer">Dear Customer,</string>
+    <string name="you_are_about_to_make_an_online_payment">You are about to make an online payment.</string>
+    <string name="please_carefully_check_the_payment_detail">Please carefully check the payment detail</string>
+    <string name="below_and_click_next_to_complete_the">below and click next to complete the</string>
+    <string name="payment">payment.</string>
+    <string name="you_are_about_to_make_an_online_payment_please_carefully_check_the_payment_details_below_and_click_next_to_complete_the_payment">You are about to make an online payment. Please carefully check the payment details below and click next to complete the payment.</string>
 </resources>
