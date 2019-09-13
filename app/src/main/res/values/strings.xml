@@ -10,12 +10,13 @@
     </string-array>
 
     <string-array name="complaint_types">
-        <item>Select Complaint type</item>
+        <item>Select Complaint Type</item>
         <item>Supply Failure</item>
         <item>Equipment Repair</item>
         <item>Voltage Issues</item>
         <item>Property Damage</item>
         <item>Natural Hazard</item>
+        <item>Other</item>
     </string-array>
     <string name="title_activity_bill_payment_with_history">BillPaymentWithHistory</string>
     <string name="tab_text_1">Bill Payment</string>
@@ -26,4 +27,6 @@
     <string name="below_and_click_next_to_complete_the">below and click next to complete the</string>
     <string name="payment">payment.</string>
     <string name="you_are_about_to_make_an_online_payment_please_carefully_check_the_payment_details_below_and_click_next_to_complete_the_payment">You are about to make an online payment. Please carefully check the payment details below and click next to complete the payment.</string>
+    <string name="complaints">complaints</string>
+    <string name="previous_complaints">Previous Complaints</string>
 </resources>
