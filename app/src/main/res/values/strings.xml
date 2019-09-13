@@ -39,12 +39,13 @@
     </string-array>
 
     <string-array name="complaint_types">
-        <item>Select Complaint type</item>
+        <item>Select Complaint Type</item>
         <item>Supply Failure</item>
         <item>Equipment Repair</item>
         <item>Voltage Issues</item>
         <item>Property Damage</item>
         <item>Natural Hazard</item>
+        <item>Other</item>
     </string-array>
     <string name="title_activity_bill_payment_with_history">BillPaymentWithHistory</string>
     <string name="tab_text_1">Bill Payment</string>
@@ -60,4 +61,6 @@
     <string name="card_number">Card Number</string>
     <string name="_3_digit_pin">3 Digit Pin</string>
     <string name="pay">Pay</string>
+    <string name="complaints">complaints</string>
+    <string name="previous_complaints">Previous Complaints</string>
 </resources>
