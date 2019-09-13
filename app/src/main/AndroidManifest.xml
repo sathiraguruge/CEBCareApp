@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BankPayment"></activity>
+        <activity android:name=".BillCalculator"></activity>
+        <activity android:name=".BankPayment" />
         <activity
             android:name=".BillPaymentWithHistory"
             android:label="@string/title_activity_bill_payment_with_history"

@@ -38,6 +38,31 @@
         <item>26</item>
     </string-array>
 
+    <string-array name="tariff">
+        <item>Domestic (11)</item>
+        <item>Domestic (13) TOU</item>
+        <item>Industrial (21,22)-1</item>
+        <item>General (31,32)-1</item>
+        <item>Government (33,34)-1</item>
+        <item>Hotel (41)-1</item>
+        <item>Religious and Charity (51)</item>
+        <item>Hotel (Bulk)-2</item>
+        <item>Hotel (Bulk)-3</item>
+        <item>General (Bulk)-2</item>
+        <item>General (Bulk)-3</item>
+        <item>Government (Bulk)-2</item>
+        <item>Government (Bulk)-3</item>
+        <item>Industrial (Bulk)-2</item>
+        <item>Industrial (Bulk)-3</item>
+    </string-array>
+
+    <string-array name="self_generation">
+        <item>Non</item>
+        <item>Net Metering</item>
+        <item>Net Accounting</item>
+        <item>Net Plus</item>
+    </string-array>
+
     <string-array name="complaint_types">
         <item>Select Complaint Type</item>
         <item>Supply Failure</item>
@@ -63,4 +88,15 @@
     <string name="pay">Pay</string>
     <string name="complaints">complaints</string>
     <string name="previous_complaints">Previous Complaints</string>
+    <string name="tariff">Tariff</string>
+    <string name="self_generation">Self-Generation</string>
+    <string name="number_of_days">Number of Days</string>
+    <string name="pick_start_and_end_dates">Pick start and end dates</string>
+    <string name="units">Units</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="usage_charges">Usage Charges</string>
+    <string name="fixed_charges">Fixed Charges</string>
+    <string name="total_charge">Total Charge</string>
+    <string name="charge_for_the_day">Charge for the Day</string>
 </resources>
