@@ -16,8 +16,11 @@
         <item>Voltage Issues</item>
         <item>Property Damage</item>
         <item>Natural Hazard</item>
+        <item>Other</item>
     </string-array>
     <string name="title_activity_bill_payment_with_history">BillPaymentWithHistory</string>
     <string name="tab_text_1">Bill Payment</string>
     <string name="tab_text_2">Payment History</string>
+    <string name="complaints">complaints</string>
+    <string name="previous_complaints">Previous Complaints</string>
 </resources>
