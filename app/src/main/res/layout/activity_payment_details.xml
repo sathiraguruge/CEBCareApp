@@ -135,13 +135,14 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/proceedToPaymentBtn"
+                    android:id="@+id/payBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:backgroundTint="@color/toolbarColour"
                     android:backgroundTintMode="src_in"
                     android:elevation="6dp"
+                    android:onClick="onClick"
                     android:text="Pay"
                     android:textColor="#fff" />
 

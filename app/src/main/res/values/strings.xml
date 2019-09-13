@@ -9,6 +9,35 @@
         <item>024243</item>
     </string-array>
 
+    <string-array name="months">
+        <item>Month</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+
+    </string-array>
+
+    <string-array name="years">
+        <item>Year</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+    </string-array>
+
     <string-array name="complaint_types">
         <item>Select Complaint type</item>
         <item>Supply Failure</item>
@@ -26,4 +55,9 @@
     <string name="below_and_click_next_to_complete_the">below and click next to complete the</string>
     <string name="payment">payment.</string>
     <string name="you_are_about_to_make_an_online_payment_please_carefully_check_the_payment_details_below_and_click_next_to_complete_the_payment">You are about to make an online payment. Please carefully check the payment details below and click next to complete the payment.</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="forward_slash">/</string>
+    <string name="card_number">Card Number</string>
+    <string name="_3_digit_pin">3 Digit Pin</string>
+    <string name="pay">Pay</string>
 </resources>
