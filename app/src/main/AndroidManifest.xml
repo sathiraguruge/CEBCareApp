@@ -9,13 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registration"></activity>
-<!--        <activity android:name=".PaymentDetails" />-->
+        <!--<activity android:name=".LoginFinal"></activity>-->
+        <activity android:name=".ResetPassword"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Registration"
+            android:parentActivityName=".LoginFinal"
+            android:screenOrientation="portrait"/> <!-- <activity android:name=".PaymentDetails" /> -->
         <activity
             android:name=".BillPaymentWithHistory"
             android:label="@string/title_activity_bill_payment_with_history"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ComplaintHistoryActivity"
             android:screenOrientation="portrait" />
@@ -33,9 +37,13 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Profile"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
+            android:parentActivityName=".LoginFinal" />
+        <activity
+            android:name=".LoginFinal"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -31,6 +31,8 @@ public class UserDB extends SQLiteOpenHelper {
     }
 
     public boolean insertData(User user){
+
+        System.out.println("****************going to insert user name :"+user.getFullName());
         try{
             String currentDT = DateFormat.getDateTimeInstance().format(new Date());
 
@@ -52,13 +54,13 @@ public class UserDB extends SQLiteOpenHelper {
         }
     }
 
-    public User getOneUser(){
+    public User getOneUser(String username){
 
         try {
 
             User user = new User();
             SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM Complaint", null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM User u WHERE u.userName='"+username+"'", null);
 
             cursor.moveToFirst();
             user.setID(cursor.getInt(0));

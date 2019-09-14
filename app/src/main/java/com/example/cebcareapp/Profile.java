@@ -5,26 +5,45 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.cebcareapp.Database.UserDB;
+import com.example.cebcareapp.Entity.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Profile extends AppCompatActivity {
 
     TextInputLayout nameInput, emailInput, amountInput, phoneInput, landInput;
+
     TextInputEditText name, email, amount, phone, land;
     TextInputEditText nameForShow, emailForShow, phoneForShow, landForShow;
-    String nameDef, emailDef, phoneDef, landDef, emailForTest, emailPattern;
-    String nameForSave, emailForSave, phoneForSave, landForSave;
-    FloatingActionButton editEnable;
+
+    String nameDef, emailDef, phoneDef, landDef, usernameFromLogin, passwordFromLogin;
+    String nameForSave, emailForSave, phoneForSave, landForSave, emailForTest, emailPattern;
+
+    Boolean nameBool, emailBool, phoneBool, updatedFlag;
+
+    FloatingActionButton editEnable,picUpload;
+
     Button saveChanges;
+
+    User user = new User();
+    UserDB userDb = new UserDB(getBaseContext());
+    Bundle bundleFromLogin =new Bundle();
 
 
     @Override
@@ -36,21 +55,34 @@ public class Profile extends AppCompatActivity {
         toolbar.setTitle("Profile");
         setSupportActionBar(toolbar);
 
-        nameDef = "Ashhar";
-        emailDef = "ashharahmed00@gmail.com";
-        phoneDef = "0777191214";
-        landDef = "0413495321";
+
 
         name = nameForShow = (TextInputEditText)findViewById(R.id.nameEditText);
         email = emailForShow = (TextInputEditText)findViewById(R.id.emailEditText);
         phone = phoneForShow = (TextInputEditText)findViewById(R.id.phoneEditText);
         land = landForShow = (TextInputEditText)findViewById(R.id.landLineEditText);
 
-        editEnable=findViewById(R.id.editEnable);
+        editEnable = findViewById(R.id.editEnable);
+        picUpload = findViewById(R.id.picUpload);
 
-        saveChanges=findViewById(R.id.saveChanges);
+        saveChanges = findViewById(R.id.saveChanges);
 
+
+
+        nameInput = findViewById(R.id.nameTextInputLayout);
         emailInput = findViewById(R.id.emailTextInputLayout);
+        phoneInput = findViewById(R.id.phoneInputLayout);
+
+        bundleFromLogin = getIntent().getExtras();
+//        usernameFromLogin = bundleFromLogin.getString("username");
+//        passwordFromLogin = bundleFromLogin.getString("password");
+
+        user = userDb.getOneUser(usernameFromLogin);
+
+        nameDef = "Ashhar";
+        emailDef = "ashharahmed00@gmail.com";
+        phoneDef = "0777191214";
+        landDef = "0413495321";
 
         nameForShow.setText(nameDef);
         nameForShow.setEnabled(false);
@@ -64,10 +96,6 @@ public class Profile extends AppCompatActivity {
 
         landForShow.setText(landDef);
         landForShow.setEnabled(false);
-
-        nameInput = findViewById(R.id.nameTextInputLayout);
-        emailInput = findViewById(R.id.emailTextInputLayout);
-
         name.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event){
@@ -95,6 +123,17 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        picUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Profile Picture uploaded",
+                        Toast.LENGTH_SHORT);
+
+                toast.show();
+            }
+        });
+
         editEnable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,82 +150,64 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-
-
-        emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                emailForTest = email.getText().toString().trim();
-
-                if (emailForTest.matches(emailPattern) && s.length() > 0)
-                {
-                    Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();
-                    // or
-                    //textView.setText("valid email");
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Invalid email address",Toast.LENGTH_SHORT).show();
-                    //or
-                    //textView.setText("invalid email");
-                }
-            }
-        });
-
-
         saveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 nameForSave = name.getText().toString().trim();
                 emailForTest = email.getText().toString().trim();
-
-                if (emailForTest.matches(emailPattern) && emailForTest.length() > 0)
-                {
-                    Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();
-                    // or
-                    //textView.setText("valid email");
-                    emailForSave = email.getText().toString().trim();
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Invalid email address",Toast.LENGTH_SHORT).show();
-                    //or
-                    //textView.setText("invalid email");
-
-                    emailInput.setFocusable(true);
-                    email.setCursorVisible(true);
-                    email.setFocusable(true);
-                    emailInput.setBoxBackgroundColor(16777215);
-
-                    email.setError("Enter Valid Email address");
-                }
-                    /*CharSequence email = email.getText().toString();
-                    if(!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                        Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Invalid email address",Toast.LENGTH_SHORT).show();
-                    }
-*/
-
                 phoneForSave = phone.getText().toString().trim();
                 landForSave = land.getText().toString().trim();
 
-                Intent intent = new Intent(Profile.this, Registration.class);
-                startActivity(intent);
+                Pattern ps = Pattern.compile("^[a-zA-Z ]+$");
+                Matcher ms = ps.matcher(nameForSave);
+
+                nameBool = ms.matches() && (!TextUtils.isEmpty(nameForSave));
+                emailBool = (!TextUtils.isEmpty(emailForTest) && Patterns.EMAIL_ADDRESS.matcher(emailForTest).matches());
+                phoneBool = (!TextUtils.isEmpty(phoneForSave)) && !Pattern.matches("[a-zA-Z]+", phoneForSave) && phoneForSave.length() > 6 && phoneForSave.length() <= 13;
+
+                if (nameBool) {
+                    nameInput.setErrorEnabled(false);
+                    if (emailBool) {
+                        emailInput.setErrorEnabled(false);
+                        if (phoneBool) {
+                            phoneInput.setErrorEnabled(false);
+
+                            nameDef = nameForSave = name.getText().toString().trim();
+                            emailForTest = email.getText().toString().trim();
+                            phoneForSave = phone.getText().toString();
+                            landForSave = land.getText().toString().trim();
+
+//                            user.setFullName(nameForSave);
+//                            user.setEmail(emailForSave);
+//                            user.setPhone(Integer.parseInt(phoneForSave));
+//                            user.setLandPhone(Integer.parseInt(landForSave));
+
+//                            userDb.
+                            System.out.println("in phone true");
+                            updatedFlag=true;
+
+                        } else {
+                            phoneInput.setError("Please enter a valid Phone Number");
+                            System.out.println("in phone false");
+                            updatedFlag=false;
+                        }
+                    } else {
+                        emailInput.setError("Please enter a valid Email !");
+                        updatedFlag=false;
+                    }
+                } else {
+                    nameInput.setBoxBackgroundColorResource(R.color.redColour);
+                    nameInput.setError("Please enter a valid name !");
+                    updatedFlag=false;
+                }
+
+                if(updatedFlag){
+                    Intent intent = new Intent(Profile.this, Registration.class);
+                    startActivity(intent);
+                }
             }
         });
     }
+
+
 }

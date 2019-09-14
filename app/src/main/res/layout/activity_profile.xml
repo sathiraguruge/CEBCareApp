@@ -37,12 +37,39 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <ImageView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="6dp"
-                    android:src="@drawable/profile_pic" />
+                    android:layout_height="wrap_content">
 
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="98dp"
+                        android:layout_height="135dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.451"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/profile" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/picUpload"
+                        android:layout_width="50dp"
+                        android:layout_height="49dp"
+                        android:layout_marginTop="84dp"
+                        android:src="@drawable/edit_pencil"
+                        app:backgroundTint="#3F51B5"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.606"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/imageView3"
+                        app:rippleColor="#00FFFFFF" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nameTextInputLayout"
@@ -102,7 +129,7 @@
                     android:id="@+id/landLineLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mobile Number"
+                    android:hint="Land Line"
                     app:errorEnabled="true"
                     app:hintAnimationEnabled="true">
 
@@ -124,6 +151,12 @@
                     android:clickable="true"
                     app:backgroundTint="#2196F3"
                     app:srcCompat="@drawable/edit_pencil_resized" />
+
+                <TextView
+                    android:id="@+id/editBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Enable" />
 
                 <Button
                     android:id="@+id/saveChanges"
