@@ -37,7 +37,6 @@ public class Registration extends AppCompatActivity /*implements View.OnClickLis
     Button register, back;
 
     User user = new User();
-    UserDB userDb = new UserDB(getBaseContext());
 
 
     @Override
@@ -65,31 +64,31 @@ public class Registration extends AppCompatActivity /*implements View.OnClickLis
         password = findViewById(R.id.regPasswordEditText);
         confirmPassword = findViewById(R.id.regConfirmpasswordEditText);
 
-        register = findViewById(R.id.register);
+        register = findViewById(R.id.registerBtn);
         back = findViewById(R.id.backFromRegForm);
 
         this.buttonListner();
 
     }
 
-    /*@Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.register) {
-            Intent intent = new Intent(getApplicationContext(), BillPaymentWithHistory.class);
-            Bundle bundle = new Bundle();
-
-            if(this.isValid()){
-
-            }
-
-        }
-        if(view.getId() == R.id.backFromRegForm) {
-            onBackPressed();
-        }
-    }*/
+//    @Override
+//    public void onClick(View view) {
+//        if (view.getId() == R.id.register) {
+//            Intent intent = new Intent(getApplicationContext(), BillPaymentWithHistory.class);
+//            Bundle bundle = new Bundle();
+//
+//            if(this.isValid()){
+//
+//            }
+//
+//        }
+//        if(view.getId() == R.id.backFromRegForm) {
+//            onBackPressed();
+//        }
+//    }
 
     public void buttonListner(){
-        this.register = findViewById(R.id.register);
+        this.register = findViewById(R.id.registerBtn);
         this.register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,14 +97,13 @@ public class Registration extends AppCompatActivity /*implements View.OnClickLis
 
                 if(isValid()){
                     insertData();
-//                    Toast.makeText(getBaseContext(), "Register Successfull", Toast.LENGTH_SHORT).show();
+                    bundle1.putString("name", nameInput.getEditText().getText().toString());
+                    bundle1.putString("email", email.getText().toString().trim());
+                    bundle1.putString("password", password.getText().toString().trim());
+                    intent1.putExtras(bundle1);
+                    startActivity(intent1);
+                    Toast.makeText(getBaseContext(), "Register Successfull", Toast.LENGTH_SHORT).show();
                 }
-
-                bundle1.putString("name", nameInput.getEditText().getText().toString());
-                bundle1.putString("email", email.getText().toString().trim());
-                bundle1.putString("password", password.getText().toString().trim());
-                intent1.putExtras(bundle1);
-                startActivity(intent1);
             }
         });
 
@@ -208,8 +206,9 @@ public class Registration extends AppCompatActivity /*implements View.OnClickLis
         this.user.setLandPhone(Integer.parseInt(land.getText().toString()));
         this.user.setUserName(username.getText().toString().trim());
         this.user.setPassword(password.getText().toString().trim());
+        UserDB userDb = new UserDB(getBaseContext());
 
-        if(this.userDb.insertData(user)){
+        if(userDb.insertData(user)){
             Toast.makeText(getBaseContext(), "User "+this.user.getFullName()+" Register Successfully", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(Registration.this, LoginFinal.class);
             Bundle bundle = new Bundle();

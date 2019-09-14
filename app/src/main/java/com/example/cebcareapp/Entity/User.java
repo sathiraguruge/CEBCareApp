@@ -1,6 +1,8 @@
 package com.example.cebcareapp.Entity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private int ID;
     private String fullName;
