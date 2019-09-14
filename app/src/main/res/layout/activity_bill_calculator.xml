@@ -187,6 +187,18 @@
 
                             <TableRow android:paddingBottom="16sp">
 
+
+                                <TextView
+                                    android:id="@+id/wayOfCalculationTextView"
+                                    android:layout_weight="1"
+                                    android:text=""
+                                    android:textColor="#000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </TableRow>
+
+                            <TableRow android:paddingBottom="16sp">
+
                                 <TextView
                                     android:layout_weight=".5"
                                     android:text="@string/fixed_charges"
@@ -221,7 +233,7 @@
                                     android:textStyle="bold" />
                             </TableRow>
 
-                            <TableRow>
+                            <TableRow android:paddingBottom="16sp">
 
                                 <TextView
                                     android:layout_weight=".5"
@@ -238,7 +250,25 @@
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
                             </TableRow>
+
+                            <TableRow>
+
+                                <Button
+                                    android:id="@+id/calculateBillCalBtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_weight="1"
+                                    android:backgroundTint="@color/toolbarColour"
+                                    android:backgroundTintMode="src_in"
+                                    android:elevation="6dp"
+                                    android:onClick="onClick"
+                                    android:text="@string/calculate_bill"
+                                    android:textColor="#fff" />
+
+                            </TableRow>
                         </TableLayout>
+
                     </androidx.cardview.widget.CardView>
 
                 </TableLayout>

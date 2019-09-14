@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 
 public class BillPayment extends AppCompatActivity implements View.OnClickListener {
 
-    TextInputLayout accountNumber, nameInput, emailInput, amountInput;
+    TextInputLayout nameInput, emailInput, amountInput;
     TextInputEditText name, email, amount;
     Button proceedBtn;
     Spinner accountSpinner;
@@ -40,7 +40,6 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        accountNumber = findViewById(R.id.accountNumberTextInputLayout);
         nameInput = findViewById(R.id.nameTextInputLayout);
         emailInput = findViewById(R.id.emailTextInputLayout);
         amountInput = findViewById(R.id.amountInputLayout);
@@ -124,9 +123,13 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
     }
 
     private Boolean isValid() {
+        accountSpinner = findViewById(R.id.billPaymentAccountSpinner);
+
         nameInput = findViewById(R.id.nameTextInputLayout);
         emailInput = findViewById(R.id.emailTextInputLayout);
         amountInput = findViewById(R.id.amountInputLayout);
+
+        Toast.makeText(getBaseContext(),accountSpinner.getSelectedItem().toString(),Toast.LENGTH_LONG).show();
 
         if (isNameValid(nameInput.getEditText())) {
             nameInput.setErrorEnabled(false);

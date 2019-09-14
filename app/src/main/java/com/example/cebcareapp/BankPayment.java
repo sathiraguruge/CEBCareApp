@@ -104,15 +104,27 @@ public class BankPayment extends AppCompatActivity implements View.OnClickListen
         pinInputLayout = findViewById(R.id.pinTextInputLayout);
 
         cardNumber = findViewById(R.id.cardNumberEditText);
+        monthSpinner = findViewById(R.id.monthSpinner);
+        yearSpinner = findViewById(R.id.yearSpinner);
         pinNumber = findViewById(R.id.pinEditText);
 
         if (isCardNumberValid(cardNumber)) {
             cardNumberInputLayout.setErrorEnabled(false);
-            if (isPinValid(pinNumber)) {
-                pinInputLayout.setErrorEnabled(false);
-                return true;
+            if (isMonthSelected(monthSpinner)) {
+                if (isYearSelected(yearSpinner)) {
+                    if (isPinValid(pinNumber)) {
+                        pinInputLayout.setErrorEnabled(false);
+                        return true;
+                    } else {
+                        pinInputLayout.setError("Please enter a valid PIN number");
+                        return false;
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please select Year", Toast.LENGTH_LONG).show();
+                    return false;
+                }
             } else {
-                pinInputLayout.setError("Please enter a valid PIN number");
+                Toast.makeText(getApplicationContext(), "Please select Month", Toast.LENGTH_LONG).show();
                 return false;
             }
         } else {
@@ -120,6 +132,14 @@ public class BankPayment extends AppCompatActivity implements View.OnClickListen
             return false;
         }
 
+    }
+
+    public Boolean isMonthSelected(Spinner spinner) {
+        return !"Month".equals(spinner.getSelectedItem());
+    }
+
+    public Boolean isYearSelected(Spinner spinner) {
+        return !"Year".equals(spinner.getSelectedItem().toString());
     }
 
     public Boolean isCardNumberValid(EditText text) {

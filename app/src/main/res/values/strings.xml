@@ -99,4 +99,6 @@
     <string name="fixed_charges">Fixed Charges</string>
     <string name="total_charge">Total Charge</string>
     <string name="charge_for_the_day">Charge for the Day</string>
+    <string name="name">Name</string>
+    <string name="calculate_bill">calculate Bill</string>
 </resources>

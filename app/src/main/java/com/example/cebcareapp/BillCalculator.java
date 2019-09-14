@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.DatePicker;
@@ -17,16 +18,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class BillCalculator extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tariff, selfGeneration, units, startDate, endDate;
+    TextView tariff, selfGeneration, units, startDate, endDate, wayOfBillCalculation;
     RadioGroup radioGroup;
     RadioButton numOfDays, pickDates;
     TableRow datePickerRow;
     EditText unitsInput, numberOfDaysInput;
     DatePickerDialog picker;
+    private int fixedCharges = 500;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -52,6 +58,8 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
 
         startDate = findViewById(R.id.billCalculatorStartDatePickerTextView);
         endDate = findViewById(R.id.billCalculatorEndDatePickerTextView);
+
+        wayOfBillCalculation = findViewById(R.id.wayOfCalculationTextView);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -178,14 +186,61 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    private long calNumberOfdays(String start, String end) {
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+        long diff = 0;
+        try {
+            Date date1 = myFormat.parse(start);
+            Date date2 = myFormat.parse(end);
+            diff = date2.getTime() - date1.getTime();
+
+            System.out.println("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return diff;
+    }
+
+    private String getBillCalculationPattern(String numOfUnits) {
+        double total;
+        int units = Integer.parseInt(numOfUnits);
+        if (units < 60) {
+            total = 7.85 * units;
+            return "7.85 X " + units + "\t\t\t = Rs." + total;
+        } else if (units < 90) {
+            double t1 = 7.85 * 60;
+            double more = units - 60;
+            double t2 = more * 10;
+            total = t1 + t2;
+
+            return "7.85 X 60 = Rs." + t1 + "\n10.0 X " + more + " \t\t= Rs." + total;
+        } else {
+            double t1 = 7.85 * 60;
+            double t2 = 10 * 30;
+            double more = units - 90;
+            double t3 = more * 27.75;
+
+            total = t1 + t2 + t3;
+
+            return "7.85 X 60 = Rs." + t1 + "\n10.0 X 30 = Rs. " + t2 + "\n27.75 X " + more + "\t\t = Rs. " + total;
+        }
+    }
+
+    public Boolean isUnitsValid(EditText text) {
+        return !TextUtils.isEmpty(text.getText().toString());
+    }
+
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.billCalculatorStartDatePickerTextView) {
 
-
         } else if (view.getId() == R.id.billCalculatorEndDatePickerTextView) {
 
+        } else if (view.getId() == R.id.calculateBillCalBtn) {
+            wayOfBillCalculation.setText(getBillCalculationPattern(unitsInput.getText().toString()));
         }
     }
 }

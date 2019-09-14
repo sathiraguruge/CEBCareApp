@@ -1,5 +1,6 @@
 package com.example.cebcareapp.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -18,7 +21,6 @@ import androidx.fragment.app.Fragment;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.cebcareapp.BillPaymentWithHistory;
 import com.example.cebcareapp.PaymentDetails;
 import com.example.cebcareapp.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -35,6 +37,7 @@ public class PlaceholderFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
+    Spinner accountSpinner;
 
     TextInputLayout nameInput, emailInput, amountInput;
     TextInputEditText name, email, amount;
@@ -60,6 +63,7 @@ public class PlaceholderFragment extends Fragment {
         pageViewModel.setIndex(index);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -68,36 +72,47 @@ public class PlaceholderFragment extends Fragment {
         nameInput = root.findViewById(R.id.nameTextInputLayoutTab);
         emailInput = root.findViewById(R.id.emailTextInputLayoutTab);
         amountInput = root.findViewById(R.id.amountInputLayoutTab);
-
+        accountSpinner = root.findViewById(R.id.billPaymentFragmentAccountSpinner);
         name = root.findViewById(R.id.nameEditTextTab);
         email = root.findViewById(R.id.emailEditTextTab);
         amount = root.findViewById(R.id.amountEditTextTab);
 
         proceedBtn = root.findViewById(R.id.proceedToPaymentBtnTab);
 
-
-        name.setOnTouchListener(new View.OnTouchListener() {
+        accountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int DRAWABLE_LEFT = 0;
-                final int DRAWABLE_TOP = 1;
-                final int DRAWABLE_RIGHT = 2;
-                final int DRAWABLE_BOTTOM = 3;
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                name.setText(getName(accountSpinner));
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (name.getRight() - name.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        // your action here
-                        Toast toast = Toast.makeText(getActivity().getApplicationContext(),
-                                "Your name goes here.",
-                                Toast.LENGTH_SHORT);
-                        toast.show();
-                        return true;
-                    }
-                }
-                return false;
             }
         });
+
+//        name.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                final int DRAWABLE_LEFT = 0;
+//                final int DRAWABLE_TOP = 1;
+//                final int DRAWABLE_RIGHT = 2;
+//                final int DRAWABLE_BOTTOM = 3;
+//
+//
+//                if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    if (event.getRawX() >= (name.getRight() - name.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+//                        // your action here
+//                        Toast toast = Toast.makeText(getActivity().getApplicationContext(),
+//                                "Your name goes here.",
+//                                Toast.LENGTH_SHORT);
+//                        toast.show();
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            }
+//        });
 
         email.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -150,11 +165,13 @@ public class PlaceholderFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), PaymentDetails.class);
                 Bundle bundle = new Bundle();
+                String accountNumber = accountSpinner.getSelectedItem().toString();
                 String name = nameInput.getEditText().getText().toString();
                 String email = emailInput.getEditText().getText().toString();
                 String amount = amountInput.getEditText().getText().toString();
 
                 if (isValid()) {
+                    bundle.putString("account", accountNumber);
                     bundle.putString("name", name);
                     bundle.putString("email", email);
                     bundle.putString("amount", amount);
@@ -170,26 +187,46 @@ public class PlaceholderFragment extends Fragment {
 
     private Boolean isValid() {
 
-        if (isNameValid(nameInput.getEditText())) {
-            nameInput.setErrorEnabled(false);
-            if (isEmailValid(emailInput.getEditText())) {
-                emailInput.setErrorEnabled(false);
-                if (isAmountValid(amountInput.getEditText())) {
-                    amountInput.setErrorEnabled(false);
-                    return true;
+
+        if (isAccountSelected(accountSpinner)) {
+            if (isNameValid(nameInput.getEditText())) {
+                nameInput.setErrorEnabled(false);
+                if (isEmailValid(emailInput.getEditText())) {
+                    emailInput.setErrorEnabled(false);
+                    if (isAmountValid(amountInput.getEditText())) {
+                        amountInput.setErrorEnabled(false);
+                        return true;
+                    } else {
+                        amountInput.setError("Please enter a valid Email");
+                        return false;
+                    }
                 } else {
-                    amountInput.setError("Please enter a valid Email");
+                    emailInput.setError("Please enter a valid Email !");
                     return false;
                 }
             } else {
-                emailInput.setError("Please enter a valid Email !");
+                nameInput.setBoxBackgroundColorResource(R.color.redColour);
+                nameInput.setError("Please enter a valid name !");
                 return false;
             }
         } else {
-            nameInput.setBoxBackgroundColorResource(R.color.redColour);
-            nameInput.setError("Please enter a valid name !");
+            Toast.makeText(getActivity().getApplicationContext(), "Please Select Account Number", Toast.LENGTH_LONG).show();
             return false;
         }
+    }
+
+    private String getName(Spinner spinner) {
+        if (spinner.getSelectedItem().toString().equals("000322")) {
+            return "Sahan Sandaruwan";
+        } else if (spinner.getSelectedItem().toString().equals("024243")) {
+            return "Sathira Gurughe";
+        } else {
+            return "Guest";
+        }
+    }
+
+    public Boolean isAccountSelected(Spinner spinner) {
+        return !"Select Account Number".equals(spinner.getSelectedItem());
     }
 
     public Boolean isNameValid(EditText text) {
