@@ -59,7 +59,7 @@ public class LoginFinal extends AppCompatActivity {
 //                Intent intent1 = new Intent(LoginFinal.this, Registration.class);
 
                 if (isValid()){
-                    Toast.makeText(getBaseContext(), "Login Successfull", Toast.LENGTH_SHORT).show();
+
                     Intent intent1 = new Intent(LoginFinal.this, MainActivity.class);
                     Bundle bundle1 = new Bundle();
 
@@ -70,10 +70,12 @@ public class LoginFinal extends AppCompatActivity {
                         bundle1.putString("username", loginUsername.getText().toString());
                         bundle1.putString("password", loginPassword.getText().toString());
                         intent1.putExtras(bundle1);
+                        Toast.makeText(getBaseContext(), "Login Successfull", Toast.LENGTH_SHORT).show();
                         startActivity(intent1);
                     }else {
-                        Toast.makeText(getBaseContext(), "Login Fail", Toast.LENGTH_SHORT).show();
-                        loginUsername.setError("Incorrect Password");
+                        Toast.makeText(getBaseContext(), "                   Login Fail.\nIncorrect Password/Username", Toast.LENGTH_SHORT).show();
+                        loginPassword.setError("Incorrect Password/Username");
+                        loginUsername.setError("Incorrect Password/Username");
                     }
 
                 }

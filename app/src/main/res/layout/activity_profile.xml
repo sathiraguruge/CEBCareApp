@@ -169,6 +169,17 @@
                     android:text="Save Changes"
                     android:textColor="#fff" />
 
+                <Button
+                    android:id="@+id/resetPasswordBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/toolbarColour"
+                    android:backgroundTintMode="src_in"
+                    android:elevation="6dp"
+                    android:text="Reset Password"
+                    android:textColor="#fff" />
+
             </LinearLayout>
 
         </ScrollView>

@@ -39,7 +39,7 @@ public class Profile extends AppCompatActivity {
 
     FloatingActionButton editEnable,picUpload;
 
-    Button saveChanges;
+    Button saveChanges, resetPasswordBtn;
 
     User user = new User();
     UserDB userDb = new UserDB(getBaseContext());
@@ -66,6 +66,7 @@ public class Profile extends AppCompatActivity {
         picUpload = findViewById(R.id.picUpload);
 
         saveChanges = findViewById(R.id.saveChanges);
+        resetPasswordBtn = findViewById(R.id.resetPasswordBtn);
 
 
 
@@ -205,6 +206,13 @@ public class Profile extends AppCompatActivity {
                     Intent intent = new Intent(Profile.this, Registration.class);
                     startActivity(intent);
                 }
+            }
+        });
+        resetPasswordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(Profile.this, ResetPassword.class);
+                startActivity(intent2);
             }
         });
     }
