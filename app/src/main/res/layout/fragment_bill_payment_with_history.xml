@@ -42,6 +42,7 @@
                     app:hintEnabled="true">
 
                     <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/billPaymentFragmentAccountSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30sp"
@@ -53,7 +54,7 @@
                     android:id="@+id/nameTextInputLayoutTab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     app:errorEnabled="true"
                     app:hintAnimationEnabled="true">
 
@@ -61,8 +62,7 @@
                         android:id="@+id/nameEditTextTab"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/bg_layouts"
-                        android:drawableRight="@drawable/bg_layouts"
+                        android:enabled="false"
                         android:focusable="auto"
                         android:inputType="text"
                         android:longClickable="false" />

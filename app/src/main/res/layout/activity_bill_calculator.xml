@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BillCalculator">
+
+    <include
+        android:id="@+id/billPaymentToolbar"
+        layout="@layout/toolbar" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="8sp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_activity"
+            android:translationY="-50sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120sp"
+                    android:elevation="6sp"
+                    android:padding="16sp">
+
+                    <TableRow android:paddingBottom="16sp">
+
+                        <TextView
+                            android:id="@+id/tariffTextView"
+                            android:layout_marginRight="16sp"
+                            android:layout_weight=".5"
+                            android:clickable="true"
+                            android:drawableEnd="@drawable/bg_layouts"
+                            android:drawableRight="@drawable/bg_layouts"
+                            android:text="@string/tariff"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
+
+                        <Spinner
+                            android:layout_weight=".5"
+                            android:entries="@array/tariff" />
+
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="16sp">
+
+                        <TextView
+                            android:id="@+id/selfGenerationTextView"
+                            android:layout_marginRight="16sp"
+                            android:layout_weight=".5"
+                            android:clickable="true"
+                            android:drawableEnd="@drawable/bg_layouts"
+                            android:drawableRight="@drawable/bg_layouts"
+                            android:text="@string/self_generation"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
+
+                        <Spinner
+                            android:layout_weight=".5"
+                            android:entries="@array/self_generation" />
+
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="16sp">
+
+                        <TextView
+                            android:id="@+id/unitsTextView"
+                            android:layout_marginRight="16sp"
+                            android:layout_weight=".5"
+                            android:clickable="true"
+                            android:drawableEnd="@drawable/bg_layouts"
+                            android:drawableRight="@drawable/bg_layouts"
+                            android:text="@string/units"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/billCalculatorNumberOfUnitsEditText"
+                            android:layout_weight=".5"
+                            android:inputType="number"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                    <TableRow android:paddingBottom="16sp">
+
+                        <RadioGroup
+                            android:id="@+id/billCalculatorRadioGroup"
+                            android:layout_weight=".5">
+
+                            <RadioButton
+                                android:id="@+id/billCalculatorNumOfDaysRadioBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="@string/number_of_days"
+                                android:textSize="16sp" />
+
+                            <RadioButton
+                                android:id="@+id/billCalculatorPickDatesRadioBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/pick_start_and_end_dates"
+                                android:textSize="16sp" />
+
+                        </RadioGroup>
+
+                        <EditText
+                            android:id="@+id/billCalculatorNumOfDaysEditText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:inputType="number"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/billCalculatorDatePickerTableRow"
+                        android:paddingBottom="16sp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/billCalculatorStartDatePickerTextView"
+                            android:layout_weight=".5"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:text="@string/start_date"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/billCalculatorEndDatePickerTextView"
+                            android:layout_weight=".5"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:text="@string/end_date"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="6sp"
+                        app:cardElevation="6sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16sp"
+                            android:text="@string/usage_charges"
+                            android:textAlignment="center"
+                            android:textColor="#000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TableRow
+                                android:layout_gravity="center"
+                                android:paddingBottom="16sp"
+                                android:textAlignment="center" />
+
+                            <TableRow
+                                android:layout_gravity="center"
+                                android:paddingBottom="16sp"
+                                android:textAlignment="center" />
+
+                            <TableRow android:paddingBottom="16sp">
+
+
+                                <TextView
+                                    android:id="@+id/wayOfCalculationTextView"
+                                    android:layout_weight="1"
+                                    android:text=""
+                                    android:textColor="#000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </TableRow>
+
+                            <TableRow android:paddingBottom="16sp">
+
+                                <TextView
+                                    android:layout_weight=".5"
+                                    android:text="@string/fixed_charges"
+                                    android:textColor="#000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/fixedChargesResultTextView"
+                                    android:layout_weight=".5"
+                                    android:text="Rs."
+                                    android:textColor="#000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </TableRow>
+
+                            <TableRow android:paddingBottom="16sp">
+
+                                <TextView
+                                    android:layout_weight=".5"
+                                    android:text="@string/total_charge"
+                                    android:textColor="#000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/totalChargesResultTextView"
+                                    android:layout_weight=".5"
+                                    android:text="Rs."
+                                    android:textColor="#000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </TableRow>
+
+                            <TableRow android:paddingBottom="16sp">
+
+                                <TextView
+                                    android:layout_weight=".5"
+                                    android:text="@string/charge_for_the_day"
+                                    android:textColor="#000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/chargeForTheDayResultTextView"
+                                    android:layout_weight=".5"
+                                    android:text="Rs."
+                                    android:textColor="#000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_gravity="center"
+                                android:layout_weight="1">
+
+                                <Button
+                                    android:id="@+id/calculateBillCalBtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_weight="1"
+                                    android:backgroundTint="@color/toolbarColour"
+                                    android:backgroundTintMode="src_in"
+                                    android:elevation="6dp"
+                                    android:onClick="onClick"
+                                    android:text="@string/calculate_bill"
+                                    android:textAlignment="center"
+                                    android:textColor="#fff" />
+
+                            </TableRow>
+                        </TableLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </TableLayout>
+            </FrameLayout>
+        </ScrollView>
+
+    </FrameLayout>
+
+
+</LinearLayout>

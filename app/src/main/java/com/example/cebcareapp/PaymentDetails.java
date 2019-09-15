@@ -8,13 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class PaymentDetails extends AppCompatActivity implements View.OnClickListener {
 
-    TextView nameText, emailText, amountText;
+    TextView accountNum, nameText, emailText, amountText;
     Button pay;
-    String name, email, amount;
+    String accNumber, name, email, amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +26,23 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
 
         Bundle bundle = getIntent().getExtras();
 
+        accNumber = bundle.getString("account");
         name = bundle.getString("name");
         email = bundle.getString("email");
         amount = bundle.getString("amount");
 
+        accountNum = findViewById(R.id.paymentDetailsAccountNumberTextView);
         nameText = findViewById(R.id.paymentDetailsNameTextView);
         emailText = findViewById(R.id.paymentDetailsEmailTextView);
         amountText = findViewById(R.id.paymentDetailsAmountTextView);
 
         pay = findViewById(R.id.payBtn);
 
+        accountNum.setText(accNumber);
         nameText.setText(name);
         emailText.setText(email);
         String formatedAmount = "Rs. " + amount;
         amountText.setText(formatedAmount);
-
     }
 
     @Override

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Animation bgAnim, cloverAnim, fromButton, menuAnim;
     LinearLayout appNameSplash, homeTitle, menu;
 
-    int numOfSessions, count ; // This is just for GIT demo purpose, delete later
+    int numOfSessions, count; // This is just for GIT demo purpose, delete later
 
     //Menu Icons
     LinearLayout complains, calender, payment, profile, calculator, assess;
@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
 
         } else if (v.getId() == R.id.calculator) {
+            Intent intent = new Intent(getApplicationContext(), BillCalculator.class);
+            startActivity(intent);
 
         } else if (v.getId() == R.id.asses) {
             Intent intent = new Intent(MainActivity.this, AssesByCensus.class);
