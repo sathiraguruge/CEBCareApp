@@ -1,6 +1,7 @@
 package com.example.cebcareapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,9 @@ public class ComplaintActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
+
+        Toolbar toolbar = findViewById(R.id.billPaymentToolbar);
+        toolbar.setTitle("Complaints");
 
         complaint = findViewById(R.id.nameEditText);
         email = findViewById(R.id.emailEditText);
