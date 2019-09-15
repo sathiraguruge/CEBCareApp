@@ -32,21 +32,16 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/accountNumberTextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/select_account_number"
-                app:errorEnabled="true"
-                app:hintEnabled="true">
 
-                <androidx.appcompat.widget.AppCompatSpinner
+
+                <Spinner
+                    android:id="@+id/billPaymentAccountSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30sp"
                     android:layout_marginBottom="20dp"
                     android:entries="@array/account_numbers" />
-            </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nameTextInputLayout"

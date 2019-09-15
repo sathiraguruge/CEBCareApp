@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -22,9 +23,10 @@ import java.util.regex.Pattern;
 
 public class BillPayment extends AppCompatActivity implements View.OnClickListener {
 
-    TextInputLayout nameInput, emailInput, amountInput;
+    TextInputLayout accountNumber, nameInput, emailInput, amountInput;
     TextInputEditText name, email, amount;
     Button proceedBtn;
+    Spinner accountSpinner;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -38,16 +40,18 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        accountNumber = findViewById(R.id.accountNumberTextInputLayout);
         nameInput = findViewById(R.id.nameTextInputLayout);
         emailInput = findViewById(R.id.emailTextInputLayout);
         amountInput = findViewById(R.id.amountInputLayout);
+
+        accountSpinner = findViewById(R.id.billPaymentAccountSpinner);
 
         name = findViewById(R.id.nameEditText);
         email = findViewById(R.id.emailEditText);
         amount = findViewById(R.id.amountEditText);
 
         proceedBtn = findViewById(R.id.proceedToPaymentBtn);
-
 
         name.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -144,6 +148,7 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
             nameInput.setError("Please enter a valid name !");
             return false;
         }
+
     }
 
     public Boolean isNameValid(EditText text) {
@@ -170,6 +175,7 @@ public class BillPayment extends AppCompatActivity implements View.OnClickListen
             String name = nameInput.getEditText().getText().toString();
             String email = emailInput.getEditText().getText().toString();
             String amount = amountInput.getEditText().getText().toString();
+
 
             if (isValid()) {
                 bundle.putString("name", name);
