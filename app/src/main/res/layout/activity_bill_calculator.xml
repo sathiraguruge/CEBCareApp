@@ -251,7 +251,9 @@
                                     android:textStyle="bold" />
                             </TableRow>
 
-                            <TableRow>
+                            <TableRow
+                                android:layout_gravity="center"
+                                android:layout_weight="1">
 
                                 <Button
                                     android:id="@+id/calculateBillCalBtn"
@@ -264,6 +266,7 @@
                                     android:elevation="6dp"
                                     android:onClick="onClick"
                                     android:text="@string/calculate_bill"
+                                    android:textAlignment="center"
                                     android:textColor="#fff" />
 
                             </TableRow>

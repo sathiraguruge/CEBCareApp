@@ -18,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,13 +28,15 @@ import java.util.concurrent.TimeUnit;
 
 public class BillCalculator extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tariff, selfGeneration, units, startDate, endDate, wayOfBillCalculation;
+    TextView tariff, selfGeneration, units, startDate, endDate, wayOfBillCalculation, fixedChargesResultTextView, totalChargesResultTextView,
+            chargeForTheDayResultTextView;
     RadioGroup radioGroup;
     RadioButton numOfDays, pickDates;
     TableRow datePickerRow;
     EditText unitsInput, numberOfDaysInput;
     DatePickerDialog picker;
-    private int fixedCharges = 500;
+    String selectedStartDate, selectedEndDate;
+    private Integer fixedCharges = 0;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -60,6 +64,9 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
         endDate = findViewById(R.id.billCalculatorEndDatePickerTextView);
 
         wayOfBillCalculation = findViewById(R.id.wayOfCalculationTextView);
+        fixedChargesResultTextView = findViewById(R.id.fixedChargesResultTextView);
+        totalChargesResultTextView = findViewById(R.id.totalChargesResultTextView);
+        chargeForTheDayResultTextView = findViewById(R.id.chargeForTheDayResultTextView);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -67,6 +74,7 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
                 if (numOfDays.isChecked()) {
                     datePickerRow.setVisibility(View.GONE);
                     numberOfDaysInput.setVisibility(View.VISIBLE);
+
                 } else if (pickDates.isChecked()) {
                     datePickerRow.setVisibility(View.VISIBLE);
                     numberOfDaysInput.setVisibility(View.GONE);
@@ -158,6 +166,7 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 startDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                selectedStartDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
                             }
                         }, year, month, day);
                 picker.show();
@@ -177,6 +186,7 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 endDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                selectedEndDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
                             }
                         }, year, month, day);
                 picker.show();
@@ -187,7 +197,7 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
     }
 
     private long calNumberOfdays(String start, String end) {
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
         long diff = 0;
         try {
             Date date1 = myFormat.parse(start);
@@ -200,7 +210,7 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return diff;
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
     private String getBillCalculationPattern(String numOfUnits) {
@@ -208,14 +218,14 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
         int units = Integer.parseInt(numOfUnits);
         if (units < 60) {
             total = 7.85 * units;
-            return "7.85 X " + units + "\t\t\t = Rs." + total;
+            return "7.85 X " + units + "\t\t\t = Rs." + total + "\nSub Total = Rs." + total;
         } else if (units < 90) {
             double t1 = 7.85 * 60;
             double more = units - 60;
             double t2 = more * 10;
             total = t1 + t2;
 
-            return "7.85 X 60 = Rs." + t1 + "\n10.0 X " + more + " \t\t= Rs." + total;
+            return "7.85 X 60 = Rs." + t1 + "\n10.0 X " + more + " \t\t= Rs." + t2 + "\nSub Total = Rs." + total;
         } else {
             double t1 = 7.85 * 60;
             double t2 = 10 * 30;
@@ -224,7 +234,46 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
 
             total = t1 + t2 + t3;
 
-            return "7.85 X 60 = Rs." + t1 + "\n10.0 X 30 = Rs. " + t2 + "\n27.75 X " + more + "\t\t = Rs. " + total;
+            return "7.85 X 60 = Rs." + t1 + "\n10.0 X 30 = Rs. " + t2 + "\n27.75 X " + more + "\t\t = Rs. " + t3 + "\nSub Total = Rs." + total;
+        }
+    }
+
+    private Double getTotalBill(String numOfUnits, String numOfdays) {
+        double total;
+        int units = Integer.parseInt(numOfUnits);
+        int days = Integer.parseInt(numOfdays);
+        if (units < 60) {
+            total = 7.85 * units;
+        } else if (units < 90) {
+            double t1 = 7.85 * 60;
+            double more = units - 60;
+            double t2 = more * 10;
+            total = t1 + t2;
+        } else {
+            double t1 = 7.85 * 60;
+            double t2 = 10 * 30;
+            double more = units - 90;
+            double t3 = more * 27.75;
+            total = t1 + t2 + t3;
+        }
+        return (total + fixedCharges);
+    }
+
+    public Boolean isValid() {
+        if (isUnitsValid(unitsInput)) {
+            if (isNumberOfdaysEntered(numberOfDaysInput)) {
+                return true;
+            } else {
+                if (numOfDays.isChecked()) {
+                    Toast.makeText(getApplicationContext(), "Please enter the number of days", Toast.LENGTH_LONG).show();
+                } else if (pickDates.isChecked()) {
+                    Toast.makeText(getApplicationContext(), "Please select the start and the end dates", Toast.LENGTH_LONG).show();
+                }
+                return false;
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Please enter number of units", Toast.LENGTH_LONG).show();
+            return false;
         }
     }
 
@@ -232,6 +281,24 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
         return !TextUtils.isEmpty(text.getText().toString());
     }
 
+    public Boolean isNumberOfdaysEntered(EditText text) {
+        if (numOfDays.isChecked()) {
+            return !TextUtils.isEmpty(text.getText().toString());
+        } else if (pickDates.isChecked()) {
+            return !startDate.getText().equals("Start Date") && !endDate.getText().equals("End Date");
+        } else {
+            return false;
+        }
+    }
+
+    private void setFixedCharges() {
+        if (Integer.parseInt(unitsInput.getText().toString()) <= 90) {
+            fixedCharges = 90;
+
+        } else {
+            fixedCharges = 480;
+        }
+    }
 
     @Override
     public void onClick(View view) {
@@ -240,7 +307,25 @@ public class BillCalculator extends AppCompatActivity implements View.OnClickLis
         } else if (view.getId() == R.id.billCalculatorEndDatePickerTextView) {
 
         } else if (view.getId() == R.id.calculateBillCalBtn) {
-            wayOfBillCalculation.setText(getBillCalculationPattern(unitsInput.getText().toString()));
+            if (isValid()) {
+                setFixedCharges();
+                startDate = findViewById(R.id.billCalculatorStartDatePickerTextView);
+                endDate = findViewById(R.id.billCalculatorEndDatePickerTextView);
+                wayOfBillCalculation.setText(getBillCalculationPattern(unitsInput.getText().toString()));
+                fixedChargesResultTextView.setText(String.format("Rs. %s", fixedCharges));
+                if (numOfDays.isChecked()) {
+                    Double totalBill = getTotalBill(unitsInput.getText().toString(), numberOfDaysInput.getText().toString());
+                    NumberFormat formatter = new DecimalFormat("#0.00");
+                    totalChargesResultTextView.setText(String.format("Rs. %s", formatter.format(totalBill)));
+                    chargeForTheDayResultTextView.setText(String.format("Rs. %s", formatter.format(totalBill / Integer.parseInt(numberOfDaysInput.getText().toString()))));
+                } else if (pickDates.isChecked()) {
+                    Double totalBill = getTotalBill(unitsInput.getText().toString(), String.valueOf(calNumberOfdays(selectedStartDate, selectedEndDate)));
+                    NumberFormat formatter = new DecimalFormat("#0.00");
+                    totalChargesResultTextView.setText(String.format("Rs. %s", formatter.format(totalBill)));
+                    chargeForTheDayResultTextView.setText(String.format("Rs. %s", formatter.format(totalBill / calNumberOfdays(selectedStartDate, selectedEndDate))));
+
+                }
+            }
         }
     }
 }
