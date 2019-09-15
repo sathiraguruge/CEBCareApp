@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/abcItemCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:colorControlActivated="#17171F"
+        android:colorControlHighlight="#17171F"
+        android:colorControlNormal="#17171F"
+        android:onClick="onCheckBoxClick"
+        android:paddingBottom="8dp"
+        android:textColorLink="#17171F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /> #
+
+    <TextView
+        android:id="@+id/abc_qty_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="215dp"
+        android:layout_marginLeft="215dp"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#17171F"
+        app:layout_constraintStart_toEndOf="@+id/abcItemCheckBox"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/abc_hrs_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:text="0.0"
+        android:textColor="#17171F"
+        app:layout_constraintStart_toEndOf="@+id/abcItemCheckBox"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/abc_appliance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="14dp"
+        android:text="Sample Text"
+        android:textColor="#17171F"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/abcItemCheckBox"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/abc_qty_inc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/abc_qty_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_increase" />
+
+    <ImageButton
+        android:id="@+id/abc_hrs_inc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/abc_hrs_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_increase" />
+
+    <ImageButton
+        android:id="@+id/abc_qty_dec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/abc_qty_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_decrease" />
+
+    <ImageButton
+        android:id="@+id/abc_hrs_dec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/abc_hrs_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_decrease" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

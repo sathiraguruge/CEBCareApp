@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="census_item_list">
+        <item>Incandescent</item>
+        <item>CFL/LED</item>
+        <item>Fluorescent</item>
+        <item>Ceiling Fan</item>
+        <item>Pedestal Fan</item>
+        <item>Computer (Desktop)</item>
+        <item>Computer (Laptop)</item>
+        <item>TV (LCD/LED)</item>
+        <item>TV (Cathode Ray Tube)</item>
+        <item>Deep Freezer</item>
+        <item>Refrigerator</item>
+        <item>Washing Machine</item>
+        <item>Iron</item>
+        <item>Vacuum Cleaner</item>
+        <item>Audio Setup</item>
+        <item>Rice Cooker</item>
+        <item>Electric Cooker</item>
+        <item>Electric Kettle</item>
+        <item>Water Heater</item>
+        <item>Electric Oven</item>
+        <item>Blender</item>
+        <item>Air Condition</item>
+        <item>Floor Polisher</item>
+        <item>Geyser (Bathroom)</item>
+        <item>Space Heater</item>
+    </string-array>
+</resources>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+    <item>
+        <item-id>app-1</item-id>
+        <item-name>Incandescent</item-name>
+        <item-units-per-hour>0.05</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-2</item-id>
+        <item-name>CFL/LED</item-name>
+        <item-units-per-hour>0.6</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-3</item-id>
+        <item-name>Ceiling Fan</item-name>
+        <item-units-per-hour>0.3</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-4</item-id>
+        <item-name>Pedestal Fan</item-name>
+        <item-units-per-hour>0.8</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-5</item-id>
+        <item-name>Computer (Desktop)</item-name>
+        <item-units-per-hour>0.5</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-6</item-id>
+        <item-name>Computer (Laptop)</item-name>
+        <item-units-per-hour>0.33</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-7</item-id>
+        <item-name>TV (LCD/LED)</item-name>
+        <item-units-per-hour>0.12</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-8</item-id>
+        <item-name>TV (Cathode Ray Tube)</item-name>
+        <item-units-per-hour>1.2</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-9</item-id>
+        <item-name>Deep Freezer</item-name>
+        <item-units-per-hour>1.4</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-10</item-id>
+        <item-name>Refrigerator</item-name>
+        <item-units-per-hour>.8</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-11</item-id>
+        <item-name>Washing Machine</item-name>
+        <item-units-per-hour>2.1</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-12</item-id>
+        <item-name>Iron</item-name>
+        <item-units-per-hour>1.42</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-13</item-id>
+        <item-name>Vacuum Cleaner</item-name>
+        <item-units-per-hour>0.35</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-14</item-id>
+        <item-name>Audio Setup</item-name>
+        <item-units-per-hour>0.47</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-15</item-id>
+        <item-name>Rice Cooker</item-name>
+        <item-units-per-hour>0.94</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-16</item-id>
+        <item-name>Electric Cooker</item-name>
+        <item-units-per-hour>1.26</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-17</item-id>
+        <item-name>Electric Kettle</item-name>
+        <item-units-per-hour>1.05</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-18</item-id>
+        <item-name>Water Heater</item-name>
+        <item-units-per-hour>1.25</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-19</item-id>
+        <item-name>Electric Oven</item-name>
+        <item-units-per-hour>1.11</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-20</item-id>
+        <item-name>Blender</item-name>
+        <item-units-per-hour>0.25</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-21</item-id>
+        <item-name>Air Condition</item-name>
+        <item-units-per-hour>2.13</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-22</item-id>
+        <item-name>Floor Polisher</item-name>
+        <item-units-per-hour>2.34</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-23</item-id>
+        <item-name>Geyser (Bathroom)</item-name>
+        <item-units-per-hour>1.78</item-units-per-hour>
+    </item>
+
+    <item>
+        <item-id>app-24</item-id>
+        <item-name>Space Heater</item-name>
+        <item-units-per-hour>2.13</item-units-per-hour>
+    </item>
+</items>
+

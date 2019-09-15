@@ -11,47 +11,195 @@
         android:id="@+id/accessByCensusToolbar"
         layout="@layout/toolbar" />
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <TextView
+            android:id="@+id/applieance-st"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="208dp"
+            android:layout_marginLeft="208dp"
+            android:layout_marginTop="8dp"
+            android:text="Appliance"
+            android:textColor="#17171F"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/hrs-st"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="530dp"
+            android:layout_marginLeft="530dp"
+            android:layout_marginTop="8dp"
+            android:text="Qty"
+            android:textColor="#17171F"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/qty-st"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="718dp"
+            android:layout_marginLeft="718dp"
+            android:layout_marginTop="8dp"
+            android:text="hrs/day"
+            android:textColor="#17171F"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/abc_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="45dp"
+            android:elevation="6dp"
+            android:text="Rs 3249.73"
+            android:textColor="#17171F"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/abc_info_bg"
+            app:layout_constraintTop_toTopOf="@+id/abc_info_bg" />
+
+        <TextView
+            android:id="@+id/abc_units"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="10dp"
+            android:elevation="6dp"
+            android:text="191 units"
+            android:textColor="#17171F"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/abc_info_bg"
+            app:layout_constraintTop_toTopOf="@+id/abc_info_bg" />
+
+        <TextView
+            android:id="@+id/abc_units_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:elevation="6dp"
+            android:text="Total consumption of Units:"
+            android:textColor="#17171F"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/abc_info_bg"
+            app:layout_constraintTop_toTopOf="@+id/abc_info_bg" />
+
+        <TextView
+            android:id="@+id/abc_price_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="45dp"
+            android:elevation="6dp"
+            android:text="Total Billing amount (Rs):"
+            android:textColor="#17171F"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/abc_info_bg"
+            app:layout_constraintTop_toTopOf="@+id/abc_info_bg" />
+
+        <TextView
+            android:id="@+id/abc_legal_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="77dp"
+            android:elevation="6dp"
+            android:text="* This is just an approximation. Actual amount may vary."
+            android:textColor="#A932323A"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/abc_info_bg"
+            app:layout_constraintTop_toTopOf="@+id/abc_info_bg" />
+
+        <Button
+            android:id="@+id/abc_info_bg"
+            android:layout_width="420dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="505dp"
+            android:background="#FFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/bg_activity"
-            android:translationY="-50sp" />
+            android:layout_marginTop="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="170sp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <!--<ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="470dp"
+                android:layout_marginTop="40sp">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:cropToPadding="false"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/access_by_census_content"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginLeft="14dp"
-                    android:layout_marginTop="46dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
 
-        </ScrollView>
-    </FrameLayout>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:cropToPadding="false"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/asses_by_census"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:layout_editor_absoluteX="0dp" />
+
+                            <RadioButton
+                                android:id="@+id/radioButton"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_marginStart="14dp"
+                                android:layout_marginLeft="14dp"
+                                android:layout_marginTop="46dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+            </ScrollView> -->
+            <ListView
+                android:id="@+id/censusList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:dividerHeight="0dp"/>
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>
