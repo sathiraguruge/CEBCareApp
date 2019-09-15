@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Getting the references of the buttons
         complains = findViewById(R.id.complains);
-        calender = findViewById(R.id.eventCalender);
         payment = findViewById(R.id.payment);
         profile = findViewById(R.id.profile);
         calculator = findViewById(R.id.calculator);
@@ -68,8 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.complains) {
             Intent intent = new Intent(MainActivity.this, ComplaintActivity.class);
             startActivity(intent);
-        } else if (v.getId() == R.id.eventCalender) {
-
         } else if (v.getId() == R.id.payment) {
             Intent intent = new Intent(MainActivity.this, BillPaymentWithHistory.class);
             startActivity(intent);
