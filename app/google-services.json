@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "266350472301",
+    "firebase_url": "https://cebcareapp.firebaseio.com",
+    "project_id": "cebcareapp",
+    "storage_bucket": "cebcareapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266350472301:android:698bbcca57f57a275fa364",
+        "android_client_info": {
+          "package_name": "com.example.cebcareapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266350472301-euu5qp627h5g7f9hjgfb1a8od3cfj14m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cebcareapp",
+            "certificate_hash": "df45b099ba82a545dd3df7e5219263d2fa046bb4"
+          }
+        },
+        {
+          "client_id": "266350472301-7hrk2h121ee1u5drvp5cjce7u358pjak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPp0EMwMIb2SxshKIZLgZycqOPi7WPTpQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266350472301-7hrk2h121ee1u5drvp5cjce7u358pjak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

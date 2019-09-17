@@ -21,13 +21,13 @@
                 android:src="@drawable/bg_activity"
                 android:translationY="-50sp" />
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listViewBillPaymentHistory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="110sp">
 
-            </ListView>
+            </androidx.recyclerview.widget.RecyclerView>>
         </FrameLayout>
     </LinearLayout>
 

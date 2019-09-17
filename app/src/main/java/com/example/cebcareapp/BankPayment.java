@@ -1,5 +1,6 @@
 package com.example.cebcareapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -15,8 +16,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.cebcareapp.Entity.Payment;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +35,10 @@ public class BankPayment extends AppCompatActivity implements View.OnClickListen
     TextInputLayout cardNumberInputLayout, pinInputLayout;
     Spinner monthSpinner, yearSpinner;
     EditText cardNumber, pinNumber, amountEditText;
-    String amount;
+    String accNumber, name, email, amount;
+    FirebaseDatabase database;
+    DatabaseReference ref;
+    Payment payment;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -34,6 +47,10 @@ public class BankPayment extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_bank_payment);
 
         Bundle bundle = getIntent().getExtras();
+
+        accNumber = bundle.getString("account");
+        name = bundle.getString("name");
+        email = bundle.getString("email");
         amount = bundle.getString("amount");
 
         cardNumberInputLayout = findViewById(R.id.cardNumberTextInputLayout);
@@ -48,6 +65,10 @@ public class BankPayment extends AppCompatActivity implements View.OnClickListen
         amountEditText = findViewById(R.id.bankPayAmountEditText);
 
         amountEditText.setText(String.format("Rs. %s", amount));
+
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference("Payments");
+        payment = new Payment();
 
         cardNumber.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -96,6 +117,27 @@ public class BankPayment extends AppCompatActivity implements View.OnClickListen
         });
 
 
+    }
+
+    private void insertDataIntoDB() {
+        getValues();
+        ref.push().setValue(payment);
+        Toast.makeText(getApplicationContext(), "Payment Details Recorded Successfully", Toast.LENGTH_LONG).show();
+    }
+
+    private void getValues() {
+        payment.setAccountNumber(accNumber);
+        payment.setName(name);
+        payment.setEmail(email);
+        payment.setAmount("Rs. " + amount);
+
+
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(date);
+        payment.setDate(formattedDate);
+        payment.setPaymentMethod("Credit/Debit Transaction");
+        payment.setImage("https://firebasestorage.googleapis.com/v0/b/cebcareapp.appspot.com/o/visa.png?alt=media&token=d773e78c-ebbf-4f01-9f73-038d60f1c382");
     }
 
 
@@ -162,6 +204,7 @@ public class BankPayment extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         if (view.getId() == R.id.bankPayBtn) {
             if (isValid()) {
+                insertDataIntoDB();
                 Toast.makeText(getApplicationContext(), "Payment Successful", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
