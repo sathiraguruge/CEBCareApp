@@ -8,14 +8,28 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+
+import com.example.cebcareapp.Entity.Payment;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class PaymentHistory extends Fragment {
 
@@ -27,6 +41,13 @@ public class PaymentHistory extends Fragment {
     int[] images = {R.drawable.visa_icon, R.drawable.visa_icon, R.drawable.visa_icon, R.drawable.visa_icon, R.drawable.visa_icon};
 
 
+    FirebaseDatabase database;
+    DatabaseReference ref;
+
+    RecyclerView recyclerView;
+
+    ArrayList<Payment> paymentArrayList = new ArrayList<>();
+
     public static PaymentHistory newInstance() {
         return new PaymentHistory();
     }
@@ -35,11 +56,48 @@ public class PaymentHistory extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.payment_history_fragment, container, false);
-        paymentList = root.findViewById(R.id.listViewBillPaymentHistory);
 
-        MyAdapter myAdapter = new MyAdapter(getActivity().getApplicationContext(), dates, description, amount, images);
-        paymentList.setAdapter(myAdapter);
+
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference().child("Payments");
+        ref.keepSynced(true);
+
+
+        recyclerView = root.findViewById(R.id.listViewBillPaymentHistory);
+        recyclerView.setHasFixedSize(true);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseRecyclerOptions<Payment> options =
+                new FirebaseRecyclerOptions.Builder<Payment>()
+                        .setQuery(ref, Payment.class)
+                        .build();
+        FirebaseRecyclerAdapter firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Payment, PaymentViewHolder>(options) {
+
+            @Override
+            public PaymentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.payment_history_resource, parent, false);
+
+                return new PaymentViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull PaymentViewHolder holder, int position, @NonNull Payment model) {
+                // Bind the image_details object to the BlogViewHolder
+                // ...
+                // holder.setDetails(getApplicationContext(), model.getName(), model.getDepartment(), model.getDescription());
+                holder.setDetails(getActivity().getApplicationContext(), model.getDate(), model.getAccountNumber(), model.getName(), model.getEmail(), model.getAmount(), model.getPaymentMethod(), model.getImage());
+            }
+        };
+        firebaseRecyclerAdapter.startListening();
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
     @Override
@@ -47,41 +105,34 @@ public class PaymentHistory extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(PaymentHistoryViewModel.class);
         // TODO: Use the ViewModel
+
+
     }
 
-    class MyAdapter extends ArrayAdapter<String> {
-        Context context;
-        String rDates[];
-        String rDescription[];
-        String rAmount[];
-        int rImages[];
 
-        MyAdapter(Context c, String dates[], String description[], String amount[], int img[]) {
-            super(c, R.layout.payment_history_resource, R.id.payListTitle, dates);
-            this.context = c;
-            this.rDates = dates;
-            this.rDescription = description;
-            this.rAmount = amount;
-            this.rImages = img;
+    public static class PaymentViewHolder extends RecyclerView.ViewHolder {
+        View mView;
+        TextView mDateView;
+        TextView mPaymentMethod;
+        TextView mAmount;
+        ImageView mImage;
+
+        public PaymentViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.mView = itemView;
+
         }
 
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getApplicationContext().getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        public void setDetails(Context context, String date, String accountNumber, String name, String email, String amount, String paymentMethod, String image) {
+            TextView mDateView = mView.findViewById(R.id.payListTitle);
+            TextView mPaymentMethod = mView.findViewById(R.id.payListDescription);
+            TextView mAmount = mView.findViewById(R.id.payListAmount);
+            ImageView mImage = mView.findViewById(R.id.imagePaymentList);
 
-            View row = layoutInflater.inflate(R.layout.payment_history_resource, parent, false);
-            ImageView images = row.findViewById(R.id.imagePaymentList);
-            TextView myDate = row.findViewById(R.id.payListTitle);
-            TextView description = row.findViewById(R.id.payListDescription);
-            TextView amount = row.findViewById(R.id.payListAmount);
-
-            images.setImageResource(rImages[position]);
-            myDate.setText(rDates[position]);
-            amount.setText(rAmount[position]);
-            description.setText(rDescription[position]);
-
-            return row;
+            mDateView.setText(date);
+            mPaymentMethod.setText(paymentMethod);
+            mAmount.setText(amount);
+            Picasso.get().load(image).into(mImage);
         }
     }
 

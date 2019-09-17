@@ -50,6 +50,9 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
         if (view.getId() == R.id.payBtn) {
             Intent intent = new Intent(this, BankPayment.class);
             Bundle bundle = new Bundle();
+            bundle.putString("account", accNumber);
+            bundle.putString("name", name);
+            bundle.putString("email", email);
             bundle.putString("amount", amount);
             intent.putExtras(bundle);
             startActivity(intent);
