@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView appBg, clover;
     Animation bgAnim, cloverAnim, fromButton, menuAnim;
     LinearLayout appNameSplash, homeTitle, menu;
-    Bundle bundle1 = new Bundle();
+
 
     int numOfSessions, count ; // This is just for GIT demo purpose, delete later
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         homeTitle.startAnimation(fromButton);
         menu.startAnimation(menuAnim);
 
-
+        Bundle bundle1 = new Bundle();
         bundle1 = getIntent().getExtras();
 
     }
@@ -71,9 +71,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
 
         } else if (v.getId() == R.id.profile) {
-
+            Bundle bundle1 = new Bundle();
+            bundle1 = getIntent().getExtras();
             Intent intent = new Intent(MainActivity.this, Profile.class);
-//            intent.putExtras(bundle1);
+            intent.putExtras(bundle1);
             startActivity(intent);
 
         } else if (v.getId() == R.id.calculator) {

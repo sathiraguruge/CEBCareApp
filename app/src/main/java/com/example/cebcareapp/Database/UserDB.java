@@ -21,7 +21,7 @@ public class UserDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE User(ID INTEGER PRIMARY KEY AUTOINCREMENT, fullName TEXT, email TEXT, phone INTEGER, landPhone INTEGER, userName TEXT, password TEXT);");
+        sqLiteDatabase.execSQL("CREATE TABLE User(ID INTEGER PRIMARY KEY AUTOINCREMENT, fullName TEXT, email TEXT, phone INTEGER, landPhone INTEGER, userName TEXT NOT NULL UNIQUE, password TEXT);");
     }
 
     @Override
@@ -75,6 +75,36 @@ public class UserDB extends SQLiteOpenHelper {
             return user;
         }catch (Exception e){
             return null;
+        }
+    }
+
+    public boolean updateProfile(User user){
+
+        try {
+
+            String strSQL = "UPDATE User " +
+                    "SET fullName = '"+user.getFullName()+"', email = '"+user.getEmail()+"', phone = '"+user.getPhone()+"', landPhone = '"+user.getLandPhone()+"' " +
+                    "WHERE userName = '"+user.getUserName()+"';";
+            SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+            sqLiteDatabase.execSQL(strSQL);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean updatePassword(User user){
+
+        try {
+
+            String strSQL = "UPDATE User " +
+                    "SET password = '"+user.getPassword()+"'" +
+                    "WHERE userName = '"+user.getUserName()+"';";
+            SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+            sqLiteDatabase.execSQL(strSQL);
+            return true;
+        }catch (Exception e){
+            return false;
         }
     }
 

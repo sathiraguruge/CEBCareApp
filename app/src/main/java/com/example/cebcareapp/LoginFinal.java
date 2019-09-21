@@ -20,7 +20,7 @@ public class LoginFinal extends AppCompatActivity {
     ImageButton passwordRecover, userRegister, loginButton;
 
     User user = new User();
-    UserDB userDb = new UserDB(getBaseContext());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +62,30 @@ public class LoginFinal extends AppCompatActivity {
 
                     Intent intent1 = new Intent(LoginFinal.this, MainActivity.class);
                     Bundle bundle1 = new Bundle();
-
+                    UserDB userDb = new UserDB(getBaseContext());
                     user = userDb.getOneUser(loginUsername.getText().toString());
                     passwordForSave = loginPassword.getText().toString().trim();
+                    System.out.println("*****************get from DB***************************************");
+                    if(user!=null){
 
-                    if(passwordForSave.equals(/*user.getPassword()*/"1111")){
-                        bundle1.putString("username", loginUsername.getText().toString());
-                        bundle1.putString("password", loginPassword.getText().toString());
-                        intent1.putExtras(bundle1);
-                        Toast.makeText(getBaseContext(), "Login Successfull", Toast.LENGTH_SHORT).show();
-                        startActivity(intent1);
-                    }else {
-                        Toast.makeText(getBaseContext(), "                   Login Fail.\nIncorrect Password/Username", Toast.LENGTH_SHORT).show();
+
+                        System.out.println(user.getPassword());
+                        System.out.println(user.getFullName());
+                        System.out.println(user.getUserName());
+                        System.out.println("********************************************************");
+                        if(passwordForSave.equals(user.getPassword())){
+                            bundle1.putString("username", loginUsername.getText().toString());
+                            bundle1.putString("password", loginPassword.getText().toString());
+                            intent1.putExtras(bundle1);
+                            Toast.makeText(getBaseContext(), "Login Successfull", Toast.LENGTH_SHORT).show();
+                            startActivity(intent1);
+                        }else {
+                            Toast.makeText(getBaseContext(), "                   Login Fail.\nIncorrect Password/Username", Toast.LENGTH_SHORT).show();
+                            loginPassword.setError("Incorrect Password/Username");
+                            loginUsername.setError("Incorrect Password/Username");
+                        }
+                    }else{
+                        Toast.makeText(getBaseContext(), "                   Login Fail.\nIncorrect Username/Password", Toast.LENGTH_SHORT).show();
                         loginPassword.setError("Incorrect Password/Username");
                         loginUsername.setError("Incorrect Password/Username");
                     }

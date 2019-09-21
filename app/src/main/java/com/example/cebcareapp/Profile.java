@@ -42,7 +42,6 @@ public class Profile extends AppCompatActivity {
     Button saveChanges, resetPasswordBtn;
 
     User user = new User();
-    UserDB userDb = new UserDB(getBaseContext());
     Bundle bundleFromLogin =new Bundle();
 
 
@@ -75,15 +74,19 @@ public class Profile extends AppCompatActivity {
         phoneInput = findViewById(R.id.phoneInputLayout);
 
         bundleFromLogin = getIntent().getExtras();
-//        usernameFromLogin = bundleFromLogin.getString("username");
-//        passwordFromLogin = bundleFromLogin.getString("password");
-
+        usernameFromLogin = bundleFromLogin.getString("username");
+        passwordFromLogin = bundleFromLogin.getString("password");
+        UserDB userDb = new UserDB(getBaseContext());
         user = userDb.getOneUser(usernameFromLogin);
-
-        nameDef = "Ashhar";
-        emailDef = "ashharahmed00@gmail.com";
-        phoneDef = "0777191214";
-        landDef = "0413495321";
+        System.out.println("*****************get from DB***************************************");
+        System.out.println(user.getPassword());
+        System.out.println(user.getFullName());
+        System.out.println(user.getUserName());
+        System.out.println("********************************************************");
+        nameDef = user.getFullName();
+        emailDef = user.getEmail();
+        phoneDef = Integer.toString(user.getPhone());
+        landDef = Integer.toString(user.getLandPhone());
 
         nameForShow.setText(nameDef);
         nameForShow.setEnabled(false);
@@ -178,12 +181,12 @@ public class Profile extends AppCompatActivity {
                             phoneForSave = phone.getText().toString();
                             landForSave = land.getText().toString().trim();
 
-//                            user.setFullName(nameForSave);
-//                            user.setEmail(emailForSave);
-//                            user.setPhone(Integer.parseInt(phoneForSave));
-//                            user.setLandPhone(Integer.parseInt(landForSave));
-
-//                            userDb.
+                            user.setFullName(nameForSave);
+                            user.setEmail(emailForTest);
+                            user.setPhone(Integer.parseInt(phoneForSave));
+                            user.setLandPhone(Integer.parseInt(landForSave));
+                            UserDB userDb1 = new UserDB(getBaseContext());
+                            userDb1.updateProfile(user);
                             System.out.println("in phone true");
                             updatedFlag=true;
 
@@ -203,8 +206,10 @@ public class Profile extends AppCompatActivity {
                 }
 
                 if(updatedFlag){
-                    Intent intent = new Intent(Profile.this, Registration.class);
+                    Intent intent = new Intent(Profile.this, Profile.class);
+                    intent.putExtras(bundleFromLogin);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -212,6 +217,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent2 = new Intent(Profile.this, ResetPassword.class);
+                intent2.putExtras(bundleFromLogin);
                 startActivity(intent2);
             }
         });

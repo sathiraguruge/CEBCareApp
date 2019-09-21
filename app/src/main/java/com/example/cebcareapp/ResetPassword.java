@@ -3,19 +3,23 @@ package com.example.cebcareapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.cebcareapp.Database.UserDB;
+import com.example.cebcareapp.Entity.User;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class ResetPassword extends AppCompatActivity {
 
     TextInputEditText currentPasswordEditText, resetPasswordEditText, confirmpasswordEditText;
     Button reset, backReset;
-    String pw, cnpw, crpwd;
+    String pw, cnpw, crpwd, usernameFromLogin, passwordFromLogin;
+    Bundle bundleFromLogin =new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,10 @@ public class ResetPassword extends AppCompatActivity {
         reset = findViewById(R.id.reset);
         backReset = findViewById(R.id.backReset);
 
+        bundleFromLogin = getIntent().getExtras();
+        usernameFromLogin = bundleFromLogin.getString("username");
+        passwordFromLogin = bundleFromLogin.getString("password");
+
         this.buttonListner();
     }
 
@@ -42,10 +50,20 @@ public class ResetPassword extends AppCompatActivity {
             public void onClick(View view) {
                 if(isValid()){
                     crpwd = currentPasswordEditText.getText().toString().trim();
-                    if(crpwd.equals("1111")){
+                    if(crpwd.equals(passwordFromLogin)){
                         cnpw = confirmpasswordEditText.getText().toString().trim();
                         pw = resetPasswordEditText.getText().toString().trim();
                         if(cnpw.equals(pw)){
+                            User user = new User();
+                            UserDB userDb1 = new UserDB(getBaseContext());
+                            user = userDb1.getOneUser(usernameFromLogin);
+                            user.setPassword(pw);
+                            userDb1.updatePassword(user);
+                            bundleFromLogin.putString("password", pw);
+                            Toast.makeText(getBaseContext(), "New Password Updated", Toast.LENGTH_SHORT).show();
+                            Intent intent2 = new Intent(ResetPassword.this, Profile.class);
+                            intent2.putExtras(bundleFromLogin);
+                            startActivity(intent2);
 
                         }else{
                             Toast.makeText(getBaseContext(), "Password did not match", Toast.LENGTH_SHORT).show();

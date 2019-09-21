@@ -102,7 +102,7 @@ public class Registration extends AppCompatActivity /*implements View.OnClickLis
                     bundle1.putString("password", password.getText().toString().trim());
                     intent1.putExtras(bundle1);
                     startActivity(intent1);
-                    Toast.makeText(getBaseContext(), "Register Successfull", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getBaseContext(), "Register Successfull", Toast.LENGTH_SHORT).show();
                 }
             }
         });
