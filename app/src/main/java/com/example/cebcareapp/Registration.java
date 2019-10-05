@@ -203,7 +203,14 @@ public class Registration extends AppCompatActivity /*implements View.OnClickLis
         this.user.setFullName(name.getText().toString());
         this.user.setEmail(email.getText().toString().trim());
         this.user.setPhone(Integer.parseInt(phone.getText().toString()));
-        this.user.setLandPhone(Integer.parseInt(land.getText().toString()));
+
+
+        if(land.getText().toString().isEmpty()){
+            this.user.setLandPhone(0);
+        }else{
+            this.user.setLandPhone(Integer.parseInt(land.getText().toString()));
+        }
+
         this.user.setUserName(username.getText().toString().trim());
         this.user.setPassword(password.getText().toString().trim());
         UserDB userDb = new UserDB(getBaseContext());

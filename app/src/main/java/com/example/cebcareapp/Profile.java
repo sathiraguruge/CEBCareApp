@@ -86,6 +86,7 @@ public class Profile extends AppCompatActivity {
         nameDef = user.getFullName();
         emailDef = user.getEmail();
         phoneDef = Integer.toString(user.getPhone());
+
         landDef = Integer.toString(user.getLandPhone());
 
         nameForShow.setText(nameDef);
@@ -98,7 +99,11 @@ public class Profile extends AppCompatActivity {
         phoneForShow.setText(phoneDef);
         phoneForShow.setEnabled(false);
 
-        landForShow.setText(landDef);
+        if(landDef.equals("0")){
+//            landForShow.setText("-");
+        }else{
+            landForShow.setText(landDef);
+        }
         landForShow.setEnabled(false);
         name.setOnTouchListener(new View.OnTouchListener(){
             @Override
@@ -162,6 +167,8 @@ public class Profile extends AppCompatActivity {
                 phoneForSave = phone.getText().toString().trim();
                 landForSave = land.getText().toString().trim();
 
+
+
                 Pattern ps = Pattern.compile("^[a-zA-Z ]+$");
                 Matcher ms = ps.matcher(nameForSave);
 
@@ -184,7 +191,12 @@ public class Profile extends AppCompatActivity {
                             user.setFullName(nameForSave);
                             user.setEmail(emailForTest);
                             user.setPhone(Integer.parseInt(phoneForSave));
-                            user.setLandPhone(Integer.parseInt(landForSave));
+//                            user.setLandPhone(Integer.parseInt(landForSave));
+                            if(land.getText().toString().isEmpty()){
+                                user.setLandPhone(0);
+                            }else{
+                                user.setLandPhone(Integer.parseInt(landForSave));
+                            }
                             UserDB userDb1 = new UserDB(getBaseContext());
                             userDb1.updateProfile(user);
                             System.out.println("in phone true");
